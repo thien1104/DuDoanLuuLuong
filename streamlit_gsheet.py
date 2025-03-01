@@ -17,14 +17,9 @@ st.write(f"🕒 Dữ liệu cập nhật lần cuối: {last_update}")
 
 # Hàm đọc dữ liệu từ Google Sheets
 def load_data():
-    try:
-        conn = st.connection("gsheets", type=GSheetsConnection)
-        df = conn.read(ttl=0)
-        return df
-    except ValueError as e:
-        st.error(f"Lỗi kết nối Google Sheets: {e}")
-        return None
-
+    conn = st.connection("gsheets", type=GSheetsConnection)
+    df = conn.read(ttl=0)  # ⚡ Luôn lấy dữ liệu mới, không cache
+    return df
 
 # Lấy dữ liệu từ Google Sheets
 df = load_data()
