@@ -15,10 +15,10 @@ st_autorefresh(interval=500 * 1000, key="data_refresh")
 last_update = datetime.datetime.now().strftime("%H:%M:%S")
 st.write(f"🕒 Dữ liệu cập nhật lần cuối: {last_update}")
 
-# Hàm đọc dữ liệu từ Google Sheets
+# ✅ Hàm đọc dữ liệu từ Google Sheets
 def load_data():
     conn = st.connection("gsheets", type=GSheetsConnection)
-    df = conn.read(ttl=0)  # ⚡ Luôn lấy dữ liệu mới, không cache
+    df = conn.read(ttl=0)
     return df
 
 # Lấy dữ liệu từ Google Sheets
@@ -27,13 +27,10 @@ df = load_data()
 if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns and "Q2" in df.columns:
     # Chuyển cột "Day" sang dạng datetime
     df["Day"] = pd.to_datetime(df["Day"], errors="coerce")
-    
     # Xóa những dòng có giá trị NaN trong cột X hoặc Q2 (đảm bảo đủ dữ liệu)
     df = df.dropna(subset=["X", "Q2"])
-
     # Sắp xếp theo ngày (từ cũ đến mới) và giữ lại bản ghi CUỐI CÙNG của mỗi ngày
     df = df.sort_values(by="Day").drop_duplicates(subset="Day", keep="last")
-
     # Định dạng lại ngày để hiển thị đẹp hơn
     df["Day"] = df["Day"].dt.strftime("%d/%m")
 
@@ -80,3 +77,6 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
 
 else:
     st.error("⚠ Không có dữ liệu hoặc thiếu cột quan trọng trong Google Sheets!")
+# Lưu dữ liệu thành file CSV
+csv_filename = "data.csv"
+df.to_csv(csv_filename, index=False)
