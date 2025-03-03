@@ -37,7 +37,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     st.markdown("<h1 style='text-align: center; color: purple;'>Sản phẩm dự đoán lưu lượng về hồ thủy điện A Lưới dựa trên mô hình học máy</h1>", unsafe_allow_html=True)
 
     # Biểu đồ lượng mưa
-    st.markdown("<h2 style='text-align: center; color: red;'>📊 Biểu đồ lượng mưa theo ngày</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color: red;'>📊 Biểu đồ lượng mưa dự báo từ WeatherAPI</h2>", unsafe_allow_html=True)
 
     col1, col2 = st.columns([2, 5])
     with col1:
@@ -63,7 +63,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         st.pyplot(fig1)
 
     # Biểu đồ lưu lượng dự đoán
-    st.markdown("<h2 style='text-align: center; color: red;'>📈 Biểu đồ lưu lượng dự đoán theo ngày</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color: red;'>📈 Biểu đồ dự báo lưu lượng về hồ A Lưới</h2>", unsafe_allow_html=True)
 
     col3, col4 = st.columns([2, 5])
     with col3:
