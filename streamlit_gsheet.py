@@ -13,12 +13,12 @@ st_autorefresh(interval=500 * 1000, key="data_refresh")
 
 # Hiển thị thời gian cập nhật dữ liệu
 last_update = datetime.datetime.now().strftime("%H:%M:%S")
-st.write(f"🕒 Dữ liệu cập nhật lần cuối: {last_update}")
+st.write(f"Dữ liệu cập nhật lần cuối: {last_update}")
 
 # ✅ Hàm đọc dữ liệu từ Google Sheets
 def load_data():
     conn = st.connection("gsheets", type=GSheetsConnection)
-    df = conn.read(ttl=0,  worksheet="LuongMua")
+    df = conn.read(ttl=0)
     return df
 
 # Lấy dữ liệu từ Google Sheets
@@ -30,11 +30,11 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     # Xóa những dòng có giá trị NaN trong cột X hoặc Q2 (đảm bảo đủ dữ liệu)
     df = df.dropna(subset=["X", "Q2"])
     # Sắp xếp theo ngày (từ cũ đến mới) và giữ lại bản ghi CUỐI CÙNG của mỗi ngày
-    df = df.sort_values(by="Day").drop_duplicates(subset="Day", keep="last")
+    df = df.sort_values(by="Day").drop_duplicates(subset="Day", keep="last").tail(7)
     # Định dạng lại ngày để hiển thị đẹp hơn
     df["Day"] = df["Day"].dt.strftime("%d/%m")
 
-    st.markdown("<h1 style='text-align: center; color: purple;'>Dự đoán lưu lượng mưa trên sông A Lưới</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: purple;'>Sản phẩm dự đoán lưu lượng về hồ thủy điện A Lưới dựa trên mô hình học máy</h1>", unsafe_allow_html=True)
 
     # Biểu đồ lượng mưa
     st.markdown("<h2 style='text-align: center; color: red;'>📊 Biểu đồ lượng mưa theo ngày</h2>", unsafe_allow_html=True)
@@ -62,7 +62,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         ax1.set_ylabel("Lượng mưa (mm)")
         st.pyplot(fig1)
 
-    # 📈 Biểu đồ lưu lượng dự đoán
+    # Biểu đồ lưu lượng dự đoán
     st.markdown("<h2 style='text-align: center; color: red;'>📈 Biểu đồ lưu lượng dự đoán theo ngày</h2>", unsafe_allow_html=True)
 
     col3, col4 = st.columns([2, 5])
@@ -77,6 +77,3 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
 
 else:
     st.error("⚠ Không có dữ liệu hoặc thiếu cột quan trọng trong Google Sheets!")
-# Lưu dữ liệu thành file CSV
-csv_filename = "data.csv"
-df.to_csv(csv_filename, index=False)
