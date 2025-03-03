@@ -18,7 +18,7 @@ st.write(f"🕒 Dữ liệu cập nhật lần cuối: {last_update}")
 # ✅ Hàm đọc dữ liệu từ Google Sheets
 def load_data():
     conn = st.connection("gsheets", type=GSheetsConnection)
-    df = conn.read(ttl=0)
+    df = conn.read(ttl=0,  worksheet="LuongMua",)
     return df
 
 # Lấy dữ liệu từ Google Sheets
