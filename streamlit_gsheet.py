@@ -68,7 +68,8 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         ax1.set_ylabel("Lưu lượng dự đoán (m³/s)", color="red")  
         ax1.plot(df["Day"], df["Q2"], marker="o", linestyle="-", color="red", label="Lưu lượng dự đoán")  
         ax1.tick_params(axis="y", labelcolor="red")  
-    
+        ax1.set_ylim(0, 50)
+
         # Hiển thị giá trị lưu lượng dự đoán trên biểu đồ
         for i, txt in enumerate(df["Q2"]):
             ax1.annotate(f"{txt:.1f}", (df["Day"].iloc[i], df["Q2"].iloc[i]), 
@@ -80,7 +81,8 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         ax2.plot(df["Day"], df["X"], marker="s", linestyle="-", color="blue", label="Lượng mưa")  
         ax2.tick_params(axis="y", labelcolor="blue")  
         ax2.invert_yaxis()  # Đảo ngược trục Y: 0 nằm trên, giá trị lớn xuống dưới
-
+        ax2.set_ylim(30, 0)
+        
         # Hiển thị giá trị lượng mưa trên biểu đồ
         for i, txt in enumerate(df["X"]):
             ax2.annotate(f"{txt:.1f}", (df["Day"].iloc[i], df["X"].iloc[i]), 
