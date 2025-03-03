@@ -22,7 +22,7 @@ def load_data():
     return df
 
 # Lấy dữ liệu từ Google Sheets
-df = load_data2()
+df = load_data()
 
 if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns and "Q2" in df.columns:
     # Chuyển cột "Day" sang dạng datetime
