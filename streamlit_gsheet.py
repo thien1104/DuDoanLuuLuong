@@ -44,7 +44,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     # Biểu đồ tổng hợp lượng mưa & lưu lượng dự đoán
     st.markdown("<h2 style='text-align: center; color: red;'>📊 Biểu đồ tổng hợp: Lượng mưa & Lưu lượng dự đoán</h2>", unsafe_allow_html=True)
     
-    col1, col2 = st.columns([2, 5])
+    col1, col2 = st.columns([2, 6])
     with col1:
         st.markdown("<h3>📅 Chọn ngày bạn muốn dự báo:</h3>", unsafe_allow_html=True)
         selected_day = st.selectbox("Chọn ngày:", df["Day"].unique(), key="day_x", label_visibility="hidden")
@@ -62,35 +62,31 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
 
     with col2:
         fig, ax1 = plt.subplots(figsize=(10, 5))
-        
+    
         # Trục Y bên trái (Lưu lượng Q2)
         ax1.set_xlabel("Ngày")  
         ax1.set_ylabel("Lưu lượng dự đoán (m³/s)", color="red")  
         ax1.plot(df["Day"], df["Q2"], marker="o", linestyle="-", color="red", label="Lưu lượng dự đoán")  
         ax1.tick_params(axis="y", labelcolor="red")  
-
+    
         # Hiển thị giá trị lưu lượng dự đoán trên biểu đồ
         for i, txt in enumerate(df["Q2"]):
             ax1.annotate(f"{txt:.1f}", (df["Day"].iloc[i], df["Q2"].iloc[i]), 
-                         textcoords="offset points", xytext=(0,5), ha='center', fontsize=10, color="red")
+                        textcoords="offset points", xytext=(0,5), ha='center', fontsize=10, color="red")
 
-        # Trục Y bên phải (Lượng mưa - X)
+        # Trục Y bên phải (Lượng mưa - X) - Hiển thị dưới dạng đường nhưng đảo ngược trục
         ax2 = ax1.twinx()  
         ax2.set_ylabel("Lượng mưa (mm)", color="blue")  
-        bars = ax2.bar(df["Day"], df["X"], color="blue", alpha=0.5, label="Lượng mưa")  
+        ax2.plot(df["Day"], df["X"], marker="s", linestyle="-", color="blue", label="Lượng mưa")  
         ax2.tick_params(axis="y", labelcolor="blue")  
-        ax2.invert_yaxis()  # Đảo ngược trục Y để 0 nằm trên, giá trị lớn hơn xuống dưới
+        ax2.invert_yaxis()  # Đảo ngược trục Y: 0 nằm trên, giá trị lớn xuống dưới
 
         # Hiển thị giá trị lượng mưa trên biểu đồ
-        for bar in bars:
-            height = bar.get_height()
-            ax2.annotate(f"{height:.1f}", xy=(bar.get_x() + bar.get_width() / 2, height),
-                         xytext=(0,5), textcoords="offset points", ha='center', fontsize=10, color="blue")
+        for i, txt in enumerate(df["X"]):
+            ax2.annotate(f"{txt:.1f}", (df["Day"].iloc[i], df["X"].iloc[i]), 
+                        textcoords="offset points", xytext=(0,5), ha='center', fontsize=10, color="blue")
 
         fig.tight_layout()  
-        st.pyplot(fig)  
-
-
-
+        st.pyplot(fig)
 else:
     st.error("⚠ Không có dữ liệu hoặc thiếu cột quan trọng trong Google Sheets!")  # Hiển thị lỗi nếu dữ liệu không hợp lệ
