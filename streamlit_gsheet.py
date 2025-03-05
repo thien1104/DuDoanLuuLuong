@@ -27,20 +27,16 @@ df = load_data()
 # Kiểm tra dữ liệu hợp lệ trước khi xử lý
 if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns and "Q2" in df.columns:
     # Chuyển cột "Day" sang kiểu datetime
-    df["Day"] = pd.to_datetime(df["Day"], errors="coerce")
-    
+    df["Day"] = pd.to_datetime(df["Day"], errors="coerce")    
     # Xóa các dòng có giá trị NaN trong cột X hoặc Q2
     df = df.dropna(subset=["X", "Q2"])
-    
     # Sắp xếp theo ngày và giữ lại bản ghi cuối cùng của mỗi ngày
     df = df.sort_values(by="Day").drop_duplicates(subset="Day", keep="last").tail(7)
-    
     # Định dạng lại cột ngày để hiển thị đẹp hơn
     df["Day"] = df["Day"].dt.strftime("%d/%m")
 
     # Tiêu đề chính của ứng dụng
     st.markdown("<h1 style='text-align: center; color: purple;'>Sản phẩm dự đoán lưu lượng về hồ thủy điện A Lưới dựa trên mô hình học máy</h1>", unsafe_allow_html=True)
-
     # Biểu đồ tổng hợp lượng mưa & lưu lượng dự đoán
     st.markdown("<h2 style='text-align: center; color: red;'>📊 Biểu đồ tổng hợp: Lượng mưa & Lưu lượng dự đoán</h2>", unsafe_allow_html=True)
     
@@ -73,7 +69,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         # Hiển thị giá trị lưu lượng dự đoán trên biểu đồ
         for i, txt in enumerate(df["Q2"]):
             ax1.annotate(f"{txt:.1f}", (df["Day"].iloc[i], df["Q2"].iloc[i]), 
-                        textcoords="offset points", xytext=(0,5), ha='center', fontsize=10, color="red")
+                        textcoords="offset points", xytext=(0,5), ha='center', fontsize=14, color="red")
 
         # Trục Y bên phải (Lượng mưa - X) - Hiển thị dưới dạng đường nhưng đảo ngược trục
         ax2 = ax1.twinx()  
@@ -82,11 +78,11 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         ax2.tick_params(axis="y", labelcolor="blue")  
         ax2.invert_yaxis()  # Đảo ngược trục Y: 0 nằm trên, giá trị lớn xuống dưới
         ax2.set_ylim(30, 0)
-        
+
         # Hiển thị giá trị lượng mưa trên biểu đồ
         for i, txt in enumerate(df["X"]):
             ax2.annotate(f"{txt:.1f}", (df["Day"].iloc[i], df["X"].iloc[i]), 
-                        textcoords="offset points", xytext=(0,5), ha='center', fontsize=10, color="blue")
+                        textcoords="offset points", xytext=(0,5), ha='center', fontsize=14, color="blue")
 
         fig.tight_layout()  
         st.pyplot(fig)
