@@ -62,7 +62,7 @@ with col4:
     st.write("")
     st.write("")
     st.markdown("""
-<h1 style='color: blue; font-size: 70px; font-family: Arial, sans-serif; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);'>NGHIÊN CỨU KHOA HỌC</h1>""", unsafe_allow_html=True)
+<h1 style='color: blue; font-size: 70px; font-family: Arial, sans-serif; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);'>NGHIÊN CỨU KHOA HỌC</h1>""", unsafe_allow_html=True)
 
 with col5:
     st.markdown(f"""
@@ -97,7 +97,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     # Tiêu đề chính của ứng dụng
     st.write("")
     st.write("")
-    st.markdown("<h1 style='text-align: center; color: red; font-size: 50px;'>  SẢN PHẨM DỰ ĐOÁN LƯU LƯỢNG VỀ HỒ THỦY ĐIỆN A LƯỚI<br>DỰA TRÊN MÔ HÌNH HỌC MÁY</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: red; font-size: 50px; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);'>  SẢN PHẨM DỰ ĐOÁN LƯU LƯỢNG VỀ HỒ THỦY ĐIỆN A LƯỚI<br>DỰA TRÊN MÔ HÌNH HỌC MÁY</h1>", unsafe_allow_html=True)
 
     col1, col2 = st.columns([2, 7])
     with col1:
@@ -123,7 +123,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     with col2:
         st.markdown("<h2 style='text-align: center; color: purple; font-size:40px;'>📊 Biểu đồ tổng hợp: Lượng mưa & Lưu lượng dự đoán về hồ A Lưới</h2>", unsafe_allow_html=True)
         fig, ax1 = plt.subplots(figsize=(10, 5),facecolor=None)
-        fig.patch.set_alpha(0.8) # Đặt màu nền cho biểu đồ
+        fig.patch.set_alpha(0.7) # Đặt màu nền cho biểu đồ
 
         # Lọc dữ liệu theo ngày được chọn
         filtered_df = df[df["Day"].isin(selected_days)]
