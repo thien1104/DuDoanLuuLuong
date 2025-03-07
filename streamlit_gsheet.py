@@ -123,7 +123,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     with col2:
         st.markdown("<h2 style='text-align: center; color: purple; font-size:40px;'>📊 Biểu đồ tổng hợp: Lượng mưa & Lưu lượng dự đoán về hồ A Lưới</h2>", unsafe_allow_html=True)
         fig, ax1 = plt.subplots(figsize=(10, 5),facecolor=None)
-        fig.patch.set_alpha(0.6) # Đặt màu nền cho biểu đồ
+        fig.patch.set_alpha(0.8) # Đặt màu nền cho biểu đồ
 
         # Lọc dữ liệu theo ngày được chọn
         filtered_df = df[df["Day"].isin(selected_days)]
