@@ -68,9 +68,9 @@ with col5:
     st.markdown(f"""
     <div style="text-align: right;">
         <p style="font-size: 20px; font-weight: bold; color: blue; margin-bottom: 1px;">Giáo viên hướng dẫn:</p>
-        <p style="line-height: 1.2;font-size: 18px;">PGS.TS. Nguyễn Chí Công<br>ThS. Đoàn Viết Long<br>ThS. Phạm Lý Triều</p>
+        <p style="line-height: 1.2;font-size: 18px;">PGS.TS. Nguyễn Chí Công<br>TS. Đoàn Viết Long<br>ThS. Phạm Lý Triều</p>
         <p style="font-size: 20px; font-weight: bold; color: blue; margin-bottom: 1px;">Sinh viên thực hiện:</p>
-        <p style="line-height: 1.2;font-size: 18px;">Lê Tấn Duy<br>Lê Thanh Thiên</p>
+        <p style="line-height: 1.2;font-size: 18px;">Lê Tấn Duy - 22DTTM<br>Lê Thanh Thiên - 22DTTM</p>
     </div>
     """, unsafe_allow_html=True)
 
