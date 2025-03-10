@@ -43,11 +43,7 @@ def load_data():
     df = conn.read(worksheet="LuongMua", ttl=0) # Đọc dữ liệu từ Google Sheets
     return df
 
-import streamlit as st
-
-# Chia layout thành 3 cột
 col1, col2 = st.columns([3, 2])  # Điều chỉnh tỷ lệ cột nếu cần
-
 with col1:
     html_code = """
     <div style="display: flex; align-items: center; padding: 10px; border-radius: 5px; width: fit-content;">
@@ -94,8 +90,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     df["Day"] = df["Day"].dt.strftime("%d/%m")
 
     # Tiêu đề chính của ứng dụng
-    st.markdown("""<h1 style='text-align: center; color: blue; font-size: 70px; font-family: Arial, sans-serif; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);'>NGHIÊN CỨU KHOA HỌC</h1>
-""", unsafe_allow_html=True)
+    st.markdown("""<h1 style='text-align: center; color: blue; font-size: 70px; font-family: Arial, sans-serif; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);'>NGHIÊN CỨU KHOA HỌC</h1>""", unsafe_allow_html=True)
     st.markdown("<h1 style='text-align: center; color: red; font-size: 55px; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);'>Sản phẩm dự đoán lưu lượng về hồ thủy điện A Lưới<br>dựa trên mô hình học máy</h1>", unsafe_allow_html=True)
     st.write("")
     st.write("") 
