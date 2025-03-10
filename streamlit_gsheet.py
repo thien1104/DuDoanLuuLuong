@@ -90,8 +90,8 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     df["Day"] = df["Day"].dt.strftime("%d/%m")
 
     # Tiêu đề chính của ứng dụng
-    st.markdown("""<h1 style='text-align: center; color: blue; font-size: 70px; font-family: Arial, sans-serif; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);'>NGHIÊN CỨU KHOA HỌC</h1>""", unsafe_allow_html=True)
-    st.markdown("<h1 style='text-align: center; color: red; font-size: 55px; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);'>Sản phẩm dự đoán lưu lượng về hồ thủy điện A Lưới<br>dựa trên mô hình học máy</h1>", unsafe_allow_html=True)
+    st.markdown("""<h1 style='text-align: center; color: blue; font-size: 70px; font-family: Arial, sans-serif; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);'>NGHIÊN CỨU KHOA HỌC</h1>""", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: red; font-size: 55px; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);'>Sản phẩm dự đoán lưu lượng về hồ thủy điện A Lưới<br>dựa trên mô hình học máy</h1>", unsafe_allow_html=True)
     st.write("")
     st.write("") 
     st.write("")
