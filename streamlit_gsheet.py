@@ -47,9 +47,9 @@ col1, col2 = st.columns([3, 2])  # Điều chỉnh tỷ lệ cột nếu cần
 with col1:
     html_code = """
     <div style="display: flex; align-items: center; padding: 10px; border-radius: 5px; width: fit-content;">
-        <img src="data:image/png;base64,{image_base64}" alt="Logo" style="height: 70px; margin-right: 15px;">
+        <img src="data:image/png;base64,{image_base64}" alt="Logo" style="height: 80px; margin-right: 15px;">
         <div>
-            <p style="font-size: 22px; font-weight: bold; margin: 0;">TRƯỜNG ĐẠI HỌC BÁCH KHOA - ĐHĐN</p>
+            <p style="font-size: 22px; font-weight: bold; color: blue; margin: 0;">TRƯỜNG ĐẠI HỌC BÁCH KHOA - ĐHĐN</p>
             <p style="font-size: 24px; font-weight: bold; color: blue; margin: 0;">KHOA XÂY DỰNG CÔNG TRÌNH THỦY</p>
         </div>
     </div>
@@ -91,7 +91,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
 
     # Tiêu đề chính của ứng dụng
     st.markdown("""<h1 style='text-align: center; color: blue; font-size: 70px; font-family: Arial, sans-serif; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);'>NGHIÊN CỨU KHOA HỌC</h1>""", unsafe_allow_html=True)
-    st.markdown("<h1 style='text-align: center; color: red; font-size: 55px; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);'>Sản phẩm dự đoán lưu lượng về hồ thủy điện A Lưới<br>dựa trên mô hình học máy</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: red; font-size: 50px; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);'>SẢN PHẨM DỰ ĐOÁN LƯU LƯỢNG VỀ HỒ THỦY ĐIỆN A LƯỚI<br>DỰA TRÊN MÔ HÌNH HỌC MÁY</h1>", unsafe_allow_html=True)
     st.write("")
     st.write("") 
     st.write("")
