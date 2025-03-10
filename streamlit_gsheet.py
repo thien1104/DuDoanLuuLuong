@@ -9,18 +9,75 @@ import base64
 # Cấu hình giao diện Streamlit
 st.set_page_config(page_title="Nghiên cứu khoa học", layout="wide")
 
+# Hàm để chuyển ảnh sang dạng Base64
+def get_base64(file_path):
+    with open(file_path, "rb") as f:
+        encoded_string = base64.b64encode(f.read()).decode()
+    return encoded_string
+
+# Đọc ảnh nền từ thư mục máy
+background_image_path = "A_luoi.jpg"
+background_base64 = get_base64(background_image_path)
+
+# CSS tùy chỉnh để thêm hình nền
+page_bg_img = f"""
+<style>
+    .stApp {{
+        background-image: url("data:image/jpg;base64,{background_base64}");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }}
+</style>
+"""
+
+# Thêm CSS vào ứng dụng
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
 # Tự động làm mới trang mỗi 500 giây (500.000 ms)
 st_autorefresh(interval=500 * 1000, key="data_refresh")
-
-# Lấy thời gian hiện tại theo UTC+7 (Giờ Việt Nam)
-last_update = (datetime.datetime.utcnow() + datetime.timedelta(hours=7)).strftime("%H:%M:%S")
-st.write(f"Dữ liệu cập nhật lần cuối: {last_update}")
 
 # Đọc dữ liệu từ Google Sheets
 def load_data():
     conn = st.connection("gsheets", type=GSheetsConnection)  # Kết nối Google Sheets
-    df = conn.read(worksheet="LuongMua",ttl=0) # Đọc dữ liệu từ Google Sheets
+    df = conn.read(worksheet="LuongMua", ttl=0) # Đọc dữ liệu từ Google Sheets
     return df
+
+import streamlit as st
+
+# Chia layout thành 3 cột
+col1, col2 = st.columns([3, 2])  # Điều chỉnh tỷ lệ cột nếu cần
+
+with col1:
+    html_code = """
+    <div style="display: flex; align-items: center; padding: 10px; border-radius: 5px; width: fit-content;">
+        <img src="data:image/png;base64,{image_base64}" alt="Logo" style="height: 70px; margin-right: 15px;">
+        <div>
+            <p style="font-size: 22px; font-weight: bold; margin: 0;">TRƯỜNG ĐẠI HỌC BÁCH KHOA - ĐHĐN</p>
+            <p style="font-size: 24px; font-weight: bold; color: blue; margin: 0;">KHOA XÂY DỰNG CÔNG TRÌNH THỦY</p>
+        </div>
+    </div>
+    """
+    def get_base64(image_path):
+        with open(image_path, "rb") as f:
+            return base64.b64encode(f.read()).decode()
+
+    image_path = "Logo.png"  # Đường dẫn ảnh logo
+    image_base64 = get_base64(image_path)
+
+    # Hiển thị trên Streamlit
+    st.markdown(html_code.format(image_base64=image_base64), unsafe_allow_html=True)
+
+with col2:
+    # Chuyển nội dung "NGHIÊN CỨU KHOA HỌC" vào ô bên phải
+    st.markdown(f"""
+    <div style="text-align: right;">
+        <p style="font-size: 20px; color: blue; font-weight: bold; margin-bottom: 2px;">Giáo viên hướng dẫn:</p>
+        <p style="font-size: 18px; line-height: 1;">PGS.TS. Nguyễn Chí Công<br>TS. Đoàn Viết Long<br>ThS. Phạm Lý Triều</p>
+        <p style="font-size: 20px; color: blue; font-weight: bold; margin-bottom: 2px;">Sinh viên thực hiện:</p>
+        <p style="font-size: 18px; line-height: 1;">Lê Tấn Duy<br>Lê Thanh Thiên</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # Lấy dữ liệu từ Google Sheets
 df = load_data()
@@ -37,7 +94,9 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     df["Day"] = df["Day"].dt.strftime("%d/%m")
 
     # Tiêu đề chính của ứng dụng
-    st.markdown("<h1 style='text-align: center; color: red; font-size: 55px;'>Sản phẩm dự đoán lưu lượng về hồ thủy điện A Lưới<br>dựa trên mô hình học máy</h1>", unsafe_allow_html=True)
+    st.markdown("""<h1 style='text-align: center; color: blue; font-size: 70px; font-family: Arial, sans-serif; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);'>NGHIÊN CỨU KHOA HỌC</h1>
+""", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: red; font-size: 55px; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);'>Sản phẩm dự đoán lưu lượng về hồ thủy điện A Lưới<br>dựa trên mô hình học máy</h1>", unsafe_allow_html=True)
     st.write("")
     st.write("") 
     st.write("")
@@ -64,7 +123,8 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
 
     with col2:
         st.markdown("<h2 style='text-align: center; color: purple;'>📊 Biểu đồ tổng hợp: Lượng mưa & Lưu lượng dự đoán về hồ A Lưới</h2>", unsafe_allow_html=True)
-        fig, ax1 = plt.subplots(figsize=(10, 5))
+        fig, ax1 = plt.subplots(figsize=(10, 5), facecolor=None)
+        fig.patch.set_alpha(0.6)
         
         # Lọc dữ liệu theo ngày được chọn
         filtered_df = df[df["Day"].isin(selected_days)]
@@ -75,6 +135,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         ax1.plot(filtered_df["Day"], filtered_df["Q2"], marker="o", linestyle="-", color="red", label="Lưu lượng dự đoán") 
         ax1.tick_params(axis="y", labelcolor="red")  
         ax1.set_ylim(0, 100)
+        ax1.set_facecolor("none")  # Trục chính không có nền
         ax1.grid(True, linestyle="--", color="red", alpha=0.3)  # Lưới cho trục X và trục Y bên trái (Q2)
 
         # Hiển thị giá trị lưu lượng dự đoán trên biểu đồ
@@ -89,6 +150,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         ax2.tick_params(axis="y", labelcolor="blue")  
         ax2.invert_yaxis()  # Đảo ngược trục Y: 0 nằm trên, giá trị lớn xuống dưới
         ax2.set_ylim(70, 0)
+        ax2.set_facecolor("none")  # Trục chính không có nền
         ax2.grid(True, linestyle="--", color="blue", alpha=0.3)  # Lưới cho trục Y bên phải (X)
 
         # Hiển thị giá trị lượng mưa trên cột
