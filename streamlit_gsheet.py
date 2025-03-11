@@ -43,39 +43,91 @@ def load_data():
     df = conn.read(worksheet="LuongMua", ttl=0) # Đọc dữ liệu từ Google Sheets
     return df
 
-col1, col2 = st.columns([3, 2])  # Điều chỉnh tỷ lệ cột nếu cần
-with col1:
-    html_code = """
-    <div style="display: flex; align-items: center; padding: 10px; border-radius: 5px; width: fit-content;">
-        <img src="data:image/png;base64,{image_base64}" alt="Logo" style="height: 80px; margin-right: 15px;">
-        <div>
-            <p style="font-size: 22px; font-weight: bold; color: blue; margin: 0;">TRƯỜNG ĐẠI HỌC BÁCH KHOA - ĐHĐN</p>
-            <p style="font-size: 24px; font-weight: bold; color: blue; margin: 0;">KHOA XÂY DỰNG CÔNG TRÌNH THỦY</p>
+st.markdown("""
+    <style>
+        .header-container {
+            background-color: #F5F5F5 !important; /* Màu nền trắng */
+            padding: 40px 100px; /* Khoảng cách lề */
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Hiệu ứng đổ bóng */
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-container img {
+            height: 90px; /* Kích thước logo */
+            margin-right: 15px;
+        }
+        .menu-container {
+            display: flex;
+            gap: 20px;
+        }
+        .menu-container button {
+            background-color: transparent;
+            border: none;
+            font-size: 25px;
+            font-weight: bold;
+            color: purple; /* Màu chữ tím */
+            cursor: pointer;
+        }
+        .menu-container button:hover {
+            color: red;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+# Hàm mã hóa hình ảnh thành base64
+def get_base64(image_path):
+    with open(image_path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
+
+image_path = "Logo.png"  # Đường dẫn ảnh logo
+image_base64 = get_base64(image_path)
+
+# Hiển thị phần header với logo và menu
+st.markdown(f"""
+    <div class="header-container">
+        <div class="logo-container">
+            <img src="data:image/png;base64,{image_base64}" alt="Logo">
+            <div>
+                <p style="font-size: 30px; font-weight: bold; color: blue; margin: 0;">
+                    KHOA XÂY DỰNG CÔNG TRÌNH THỦY
+                </p>
+                <p style="font-size: 28px; font-weight: bold; color: blue; margin: 0;">
+                    NGHIÊN CỨU KHOA HỌC
+                </p>
+            </div>
         </div>
+        <div class="menu-container">
+            <button onclick="alert('Trang chủ')">Trang chủ</button>
+            <button onclick="alert('Thành viên')">Thành viên</button>
+            <button onclick="alert('Giới thiệu')">Giới thiệu</button>
+            <button onclick="alert('Góp ý')">Góp ý</button>
+        </div>  
     </div>
-    """
-    def get_base64(image_path):
-        with open(image_path, "rb") as f:
-            return base64.b64encode(f.read()).decode()
+""", unsafe_allow_html=True)
 
-    image_path = "Logo.png"  # Đường dẫn ảnh logo
-    image_base64 = get_base64(image_path)
-
-    # Hiển thị trên Streamlit
-    st.markdown(html_code.format(image_base64=image_base64), unsafe_allow_html=True)
-
-with col2:
-    # Chuyển nội dung "NGHIÊN CỨU KHOA HỌC" vào ô bên phải
-    st.markdown(f"""
-    <div style="text-align: right;">
-        <p style="font-size: 20px; color: blue; font-weight: bold; margin-bottom: 2px;">Giáo viên hướng dẫn:</p>
-        <p style="font-size: 18px; line-height: 1;">PGS.TS. Nguyễn Chí Công<br>TS. Đoàn Viết Long<br>ThS. Phạm Lý Triều</p>
-        <p style="font-size: 20px; color: blue; font-weight: bold; margin-bottom: 2px;">Sinh viên thực hiện:</p>
-        <p style="font-size: 18px; line-height: 1;">Lê Tấn Duy<br>Lê Thanh Thiên</p>
+# Hiển thị biểu đồ mặc định trên trang chủ
+st.write("")
+st.write("")
+st.write("")
+st.write("")
+st.write("")
+st.markdown("""
+    <div style="text-align: center;">
+        <p style="font-weight: bold; color: red; font-size: 50px; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);margin-top: 0;">SẢN PHẨM DỰ ĐOÁN LƯU LƯỢNG VỀ HỒ THỦY ĐIỆN A LƯỚI<br>DỰA TRÊN MÔ HÌNH HỌC MÁY</p>
     </div>
     """, unsafe_allow_html=True)
-
-# Lấy dữ liệu từ Google Sheets
+st.write("")
+st.write("")
+def load_data():
+    conn = st.connection("gsheets", type=GSheetsConnection)  # Kết nối Google Sheets
+    df = conn.read(worksheet="LuongMua", ttl=0) # Đọc dữ liệu từ Google Sheets
+    return df
 df = load_data()
 
 # Kiểm tra dữ liệu hợp lệ trước khi xử lý
@@ -88,13 +140,6 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     df = df.sort_values(by="Day").drop_duplicates(subset="Day", keep="last").tail(7)
     # Định dạng lại cột ngày để hiển thị đẹp hơn
     df["Day"] = df["Day"].dt.strftime("%d/%m")
-
-    # Tiêu đề chính của ứng dụng
-    st.markdown("""<h1 style='text-align: center; color: blue; font-size: 70px; font-family: Arial, sans-serif; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);'>NGHIÊN CỨU KHOA HỌC</h1>""", unsafe_allow_html=True)
-    st.markdown("<h1 style='text-align: center; color: red; font-size: 50px; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);'>SẢN PHẨM DỰ ĐOÁN LƯU LƯỢNG VỀ HỒ THỦY ĐIỆN A LƯỚI<br>DỰA TRÊN MÔ HÌNH HỌC MÁY</h1>", unsafe_allow_html=True)
-    st.write("")
-    st.write("") 
-    st.write("")
 
     col1, col2 = st.columns([2, 7])
     with col1:
@@ -156,5 +201,23 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         fig.tight_layout()  
         st.pyplot(fig)
 
-else:
-    st.error("⚠ Không có dữ liệu hoặc thiếu cột quan trọng trong Google Sheets!")  # Hiển thị lỗi nếu dữ liệu không hợp lệ)
+    col3, col4 = st.columns([1, 4])
+    with col3:
+        st.markdown("<h2 style='font-size: 32px; color: purple;'> THÀNH VIÊN NHÓM</h2>", unsafe_allow_html=True)
+    with col4:
+        st.write("")
+        st.markdown(f"""
+        <div style="display: flex; flex-direction: column;">
+            <p style="font-size: 26px; color: #003399; font-weight: bold; margin-bottom: 2px;">Giáo viên hướng dẫn:</p>
+            <div style="font-size: 24px; line-height: 1.5;">
+                   PGS.TS. Nguyễn Chí Công<br>
+                   TS. Đoàn Viết Long<br>
+                   ThS. Phạm Lý Triều
+            </div>
+            <p style="font-size: 26px; color: #003399; font-weight: bold; margin-top: 10px; margin-bottom: 2px;">Sinh viên thực hiện:</p>
+            <div style="font-size: 24px; line-height: 1.5;">
+                Lê Tấn Duy<br>
+                Lê Thanh Thiên
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
