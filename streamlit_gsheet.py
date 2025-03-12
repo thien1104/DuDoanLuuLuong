@@ -94,10 +94,10 @@ st.markdown(f"""
         <div class="logo-container">
             <img src="data:image/png;base64,{image_base64}" alt="Logo">
             <div>
-                <p style="font-size: 30px; font-weight: bold; color: blue; margin: 0;">
+                <p style="font-size: 26px; font-weight: bold; color: #003399; margin: 0;">
                     KHOA XÂY DỰNG CÔNG TRÌNH THỦY
                 </p>
-                <p style="font-size: 28px; font-weight: bold; color: blue; margin: 0;">
+                <p style="font-size: 32px; font-weight: bold; color: blue; margin: 0;">
                     NGHIÊN CỨU KHOA HỌC
                 </p>
             </div>
