@@ -47,7 +47,7 @@ st.markdown("""
     <style>
         .header-container {
             background-color: #F5F5F5 !important; /* Màu nền trắng */
-            padding: 40px 100px; /* Khoảng cách lề */
+            padding: 40px 50px; /* Khoảng cách lề */
             width: 100%;
             display: flex;
             justify-content: space-between;
@@ -124,10 +124,12 @@ st.markdown("""
     """, unsafe_allow_html=True)
 st.write("")
 st.write("")
+
 def load_data():
     conn = st.connection("gsheets", type=GSheetsConnection)  # Kết nối Google Sheets
     df = conn.read(worksheet="LuongMua", ttl=0) # Đọc dữ liệu từ Google Sheets
     return df
+
 df = load_data()
 
 # Kiểm tra dữ liệu hợp lệ trước khi xử lý
