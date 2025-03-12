@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from streamlit_gsheets import GSheetsConnection
 from streamlit_autorefresh import st_autorefresh
+import datetime
 import base64
 
 # Cấu hình giao diện Streamlit
@@ -14,21 +15,41 @@ def get_base64(file_path):
         encoded_string = base64.b64encode(f.read()).decode()
     return encoded_string
 
-# CSS để thiết lập hiển thị linh hoạt
+# Đọc ảnh nền từ thư mục máy
+background_image_path = "A_luoi.jpg"
+background_base64 = get_base64(background_image_path)
+
 st.markdown("""
     <style>
-        @media (max-width: 768px) {
-            .header-container { flex-direction: column; align-items: center; text-align: center; }
-            .menu-container { flex-direction: column; gap: 10px; }
-            .logo-container img { height: 60px; }
-            h2 { font-size: 20px !important; }
+        @media screen and (max-width: 768px) {
+            .header-container {
+                padding: 20px 10px;
+                flex-direction: column;
+                text-align: center;
+            }
+            .logo-container img {
+                height: 50px; /* Logo nhỏ hơn trên mobile */
+            }
+            .menu-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .menu-container button {
+                font-size: 18px; /* Giảm kích thước chữ menu */
+            }
+            h2, h3, p {
+                font-size: 18px !important; /* Giảm kích thước chữ chung */
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            h2, h3, p {
+                font-size: 16px !important; /* Nhỏ hơn nữa trên màn hình cực nhỏ */
+            }
         }
     </style>
 """, unsafe_allow_html=True)
 
-# Đọc ảnh nền từ thư mục máy
-background_image_path = "A_luoi.jpg"
-background_base64 = get_base64(background_image_path)
 
 # CSS tùy chỉnh để thêm hình nền
 page_bg_img = f"""
