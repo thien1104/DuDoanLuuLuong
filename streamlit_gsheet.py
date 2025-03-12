@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from streamlit_gsheets import GSheetsConnection
 from streamlit_autorefresh import st_autorefresh
-import datetime
 import base64
 
 # Cấu hình giao diện Streamlit
@@ -14,6 +13,18 @@ def get_base64(file_path):
     with open(file_path, "rb") as f:
         encoded_string = base64.b64encode(f.read()).decode()
     return encoded_string
+
+# CSS để thiết lập hiển thị linh hoạt
+st.markdown("""
+    <style>
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; align-items: center; text-align: center; }
+            .menu-container { flex-direction: column; gap: 10px; }
+            .logo-container img { height: 60px; }
+            h2 { font-size: 20px !important; }
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 # Đọc ảnh nền từ thư mục máy
 background_image_path = "A_luoi.jpg"
