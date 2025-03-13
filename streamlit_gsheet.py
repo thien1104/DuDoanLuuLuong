@@ -21,14 +21,7 @@ background_base64 = get_base64(background_image_path)
 
 st.markdown("""
     <style>
-        /* Ngăn chữ bị xuống dòng dọc */
-        .stMarkdown, .stText, .stTitle, .stHeader, .stSubheader {
-            white-space: nowrap !important;
-            word-wrap: normal !important;
-            overflow: hidden;
-        }
-
-        /* Chỉnh kích thước chữ co dãn theo màn hình */
+        /* Điều chỉnh font chữ theo kích thước màn hình */
         @media screen and (max-width: 768px) {
             h1, h2, h3, h4, h5, h6 {
                 font-size: 20px !important;
@@ -55,7 +48,7 @@ st.markdown("""
 
         /* Điều chỉnh menu */
         .css-18e3th9 {
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
             justify-content: center;
         }
     </style>
@@ -137,10 +130,10 @@ st.markdown(f"""
             <img src="data:image/png;base64,{image_base64}" alt="Logo">
             <div>
                 <p style="font-size: 26px; font-weight: bold; color: #003399; margin: 0;">
-                    KHOA XÂY DỰNG CÔNG TRÌNH THỦYY
+                    KHOA XÂY DỰNG CÔNG TRÌNH THỦY
                 </p>
                 <p style="font-size: 32px; font-weight: bold; color: blue; margin: 0;">
-                    NGHIÊN CỨU KHOA HỌC
+                    NGHIÊN CỨU KHOA HỌCC
                 </p>
             </div>
         </div>
