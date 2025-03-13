@@ -21,35 +21,38 @@ background_base64 = get_base64(background_image_path)
 
 st.markdown("""
     <style>
+        /* Điều chỉnh font chữ theo kích thước màn hình */
         @media screen and (max-width: 768px) {
-            .header-container {
-                padding: 20px 10px;
-                flex-direction: column;
-                text-align: center;
+            h1, h2, h3, h4, h5, h6 {
+                font-size: 20px !important;
             }
-            .logo-container img {
-                height: 50px; /* Logo nhỏ hơn trên mobile */
-            }
-            .menu-container {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .menu-container button {
-                font-size: 18px; /* Giảm kích thước chữ menu */
-            }
-            h2, h3, p {
-                font-size: 18px !important; /* Giảm kích thước chữ chung */
+            p, li, a {
+                font-size: 16px !important;
             }
         }
-        
+
         @media screen and (max-width: 480px) {
-            h2, h3, p {
-                font-size: 16px !important; /* Nhỏ hơn nữa trên màn hình cực nhỏ */
+            h1, h2, h3, h4, h5, h6 {
+                font-size: 16px !important;
             }
+            p, li, a {
+                font-size: 14px !important;
+            }
+        }
+
+        /* Căn chỉnh logo */
+        .stImage img {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+
+        /* Điều chỉnh menu */
+        .css-18e3th9 {
+            flex-wrap: wrap;
+            justify-content: center;
         }
     </style>
 """, unsafe_allow_html=True)
-
 
 # CSS tùy chỉnh để thêm hình nền
 page_bg_img = f"""
@@ -130,7 +133,7 @@ st.markdown(f"""
                     KHOA XÂY DỰNG CÔNG TRÌNH THỦY
                 </p>
                 <p style="font-size: 32px; font-weight: bold; color: blue; margin: 0;">
-                    NGHIÊN CỨU KHOA HỌCC
+                    NGHIÊN CỨU KHOA HỌC
                 </p>
             </div>
         </div>
@@ -151,7 +154,7 @@ st.write("")
 st.write("")
 st.markdown("""
     <div style="text-align: center;">
-        <p style="font-weight: bold; color: red; font-size: 50px; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);margin-top: 0;">SẢN PHẨM DỰ ĐOÁN LƯU LƯỢNG VỀ HỒ THỦY ĐIỆN A LƯỚI<br>DỰA TRÊN MÔ HÌNH HỌC MÁY</p>
+        <p style="font-weight: bold; color: red; font-size: 50px; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);margin-top: 0;">SẢN PHẨM DỰ BÁO LƯU LƯỢNG VỀ HỒ THỦY ĐIỆN A LƯỚI<br>DỰA TRÊN MÔ HÌNH HỌC MÁY</p>
     </div>
     """, unsafe_allow_html=True)
 st.write("")
