@@ -194,18 +194,23 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
 
     with col2:
         st.markdown("<h2 style='text-align: center; color: purple;'>📊 Biểu đồ tổng hợp: Lượng mưa & Lưu lượng dự đoán về hồ A Lưới</h2>", unsafe_allow_html=True)
-        fig, ax1 = plt.subplots(figsize=(10, 5), facecolor=None)
+        fig, ax1 = plt.subplots(figsize=(9, 5), facecolor=None)
         fig.patch.set_alpha(0.6)
         
         # Lọc dữ liệu theo ngày được chọn
         filtered_df = df[df["Day"].isin(selected_days)]
+
+        q2_min = filtered_df["Q2"].min() - 3
+        q2_max = filtered_df["Q2"].max() + 10
+        x2_min = filtered_df["X"].min()
+        x2_max = filtered_df["X"].max() + 40
 
         # Trục Y bên trái (Lưu lượng Q2)
         ax1.set_xlabel("Ngày")  
         ax1.set_ylabel("Lưu lượng dự đoán (m³/s)", color="red")  
         ax1.plot(filtered_df["Day"], filtered_df["Q2"], marker="o", linestyle="-", color="red", label="Lưu lượng dự đoán") 
         ax1.tick_params(axis="y", labelcolor="red")  
-        ax1.set_ylim(12, 20)
+        ax1.set_ylim(q2_min, q2_max)
         ax1.set_facecolor("none")  # Trục chính không có nền
         ax1.grid(True, linestyle="--", color="red", alpha=0.3)  # Lưới cho trục X và trục Y bên trái (Q2)
 
@@ -220,7 +225,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         ax2.bar(filtered_df["Day"], filtered_df["X"], color="blue", alpha=0.5, label="Lượng mưa")  
         ax2.tick_params(axis="y", labelcolor="blue")  
         ax2.invert_yaxis()  # Đảo ngược trục Y: 0 nằm trên, giá trị lớn xuống dưới
-        ax2.set_ylim(70, 0)
+        ax2.set_ylim(x2_max, x2_min)
         ax2.set_facecolor("none")  # Trục chính không có nền
         ax2.grid(True, linestyle="--", color="blue", alpha=0.3)  # Lưới cho trục Y bên phải (X)
 
