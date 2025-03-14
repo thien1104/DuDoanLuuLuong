@@ -72,12 +72,6 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 # Tự động làm mới trang mỗi 500 giây (500.000 ms)
 st_autorefresh(interval=500 * 1000, key="data_refresh")
 
-# Đọc dữ liệu từ Google Sheets
-def load_data():
-    conn = st.connection("gsheets", type=GSheetsConnection)  # Kết nối Google Sheets
-    df = conn.read(worksheet="LuongMua", ttl=0) # Đọc dữ liệu từ Google Sheets
-    return df
-
 st.markdown("""
     <style>
         .header-container {
@@ -133,7 +127,7 @@ st.markdown(f"""
                     KHOA XÂY DỰNG CÔNG TRÌNH THỦY
                 </p>
                 <p style="font-size: 32px; font-weight: bold; color: blue; margin: 0;">
-                    NGHIÊN CỨU KHOA HỌCC
+                    NGHIÊN CỨU KHOA HỌC
                 </p>
             </div>
         </div>
@@ -159,6 +153,11 @@ st.markdown("""
     """, unsafe_allow_html=True)
 st.write("")
 st.write("")
+
+def load_data():
+    conn = st.connection("gsheets", type=GSheetsConnection)  # Kết nối Google Sheets
+    df = conn.read(worksheet="LuongMua", ttl=0) # Đọc dữ liệu từ Google Sheets
+    return df
 
 df = load_data()
 
