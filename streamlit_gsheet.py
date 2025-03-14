@@ -205,7 +205,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         ax1.set_ylabel("Lưu lượng dự đoán (m³/s)", color="red")  
         ax1.plot(filtered_df["Day"], filtered_df["Q2"], marker="o", linestyle="-", color="red", label="Lưu lượng dự đoán") 
         ax1.tick_params(axis="y", labelcolor="red")  
-        ax1.set_ylim(10, 20)
+        ax1.set_ylim(12, 20)
         ax1.set_facecolor("none")  # Trục chính không có nền
         ax1.grid(True, linestyle="--", color="red", alpha=0.3)  # Lưới cho trục X và trục Y bên trái (Q2)
 
