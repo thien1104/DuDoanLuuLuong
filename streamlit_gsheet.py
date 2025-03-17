@@ -203,7 +203,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         q2_min = filtered_df["Q2"].min() - 10
         q2_max = filtered_df["Q2"].max() + 500
         x2_min = filtered_df["X"].min()
-        x2_max = filtered_df["X"].max() + 20
+        x2_max = filtered_df["X"].max() + 10
 
         # Trục Y bên trái (Lưu lượng Q2)
         ax1.set_xlabel("Ngày")  
