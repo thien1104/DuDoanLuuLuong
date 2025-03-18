@@ -127,7 +127,7 @@ st.markdown(f"""
                     KHOA XÂY DỰNG CÔNG TRÌNH THỦY
                 </p>
                 <p style="font-size: 32px; font-weight: bold; color: blue; margin: 0;">
-                    NGHIÊN CỨU KHOA HỌCC
+                    NGHIÊN CỨU KHOA HỌC
                 </p>
             </div>
         </div>
