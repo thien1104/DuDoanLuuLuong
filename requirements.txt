@@ -1,5 +1,5 @@
-﻿streamlit
-matplotlib
-pandas
-st-gsheets-connection
-streamlit-autorefresh
+﻿streamlit==1.42.0
+matplotlib==3.10.0
+pandas==2.2.3
+st-gsheets-connection==0.1.0
+streamlit-autorefresh==1.0.1
