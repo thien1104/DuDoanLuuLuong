@@ -15,6 +15,11 @@ def get_base64(file_path):
         encoded_string = base64.b64encode(f.read()).decode()
     return encoded_string
 
+def load_data():
+    conn = st.connection("gsheets", type=GSheetsConnection)  # Kết nối Google Sheets
+    df = conn.read(worksheet="LuongMua", ttl=0) # Đọc dữ liệu từ Google Sheets
+    return df
+
 # Đọc ảnh nền từ thư mục máy
 background_image_path = "A_luoi.jpg"
 background_base64 = get_base64(background_image_path)
@@ -153,11 +158,6 @@ st.markdown("""
     """, unsafe_allow_html=True)
 st.write("")
 st.write("")
-
-def load_data():
-    conn = st.connection("gsheets", type=GSheetsConnection)  # Kết nối Google Sheets
-    df = conn.read(worksheet="LuongMua", ttl=0) # Đọc dữ liệu từ Google Sheets
-    return df
 
 df = load_data()
 
