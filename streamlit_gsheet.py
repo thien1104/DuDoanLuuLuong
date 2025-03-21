@@ -201,9 +201,9 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         filtered_df = df[df["Day"].isin(selected_days)]
 
         q2_min = filtered_df["Q2"].min() - 5
-        q2_max = filtered_df["Q2"].max() + 30
+        q2_max = filtered_df["Q2"].max() + 10
         x2_min = filtered_df["X"].min()
-        x2_max = filtered_df["X"].max() + 10
+        x2_max = filtered_df["X"].max() + 3
 
         # Trục Y bên trái (Lưu lượng Q2)
         ax1.set_xlabel("Ngày")  
@@ -216,7 +216,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
 
         # Hiển thị giá trị lưu lượng dự đoán trên biểu đồ
         for i, txt in enumerate(filtered_df["Q2"]):
-            ax1.annotate(f"{txt:.1f}", (filtered_df["Day"].iloc[i], filtered_df["Q2"].iloc[i]), 
+            ax1.annotate(f"{txt:.2f}", (filtered_df["Day"].iloc[i], filtered_df["Q2"].iloc[i]), 
                          textcoords="offset points", xytext=(0,5), ha='center', fontsize=14, color="red")
 
         # Trục Y bên phải (Lượng mưa - X) - Hiển thị dưới dạng đường nhưng đảo ngược trục
@@ -231,7 +231,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
 
         # Hiển thị giá trị lượng mưa trên cột
         for i, txt in enumerate(filtered_df["X"]):
-            ax2.annotate(f"{txt:.1f}", (filtered_df["Day"].iloc[i], filtered_df["X"].iloc[i]), 
+            ax2.annotate(f"{txt:.2f}", (filtered_df["Day"].iloc[i], filtered_df["X"].iloc[i]), 
                          textcoords="offset points", xytext=(0,5), ha='center', fontsize=14, color="blue")
 
         fig.tight_layout()  
