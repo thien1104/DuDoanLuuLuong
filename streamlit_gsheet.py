@@ -201,9 +201,9 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         filtered_df = df[df["Day"].isin(selected_days)]
 
         q2_min = filtered_df["Q2"].min() - 2
-        q2_max = filtered_df["Q2"].max() + 5
+        q2_max = filtered_df["Q2"].max() * 1.5
         x2_min = filtered_df["X"].min()
-        x2_max = filtered_df["X"].max() + 2
+        x2_max = filtered_df["X"].max() * 3
 
         # Trục Y bên trái (Lưu lượng Q2)
         ax1.set_xlabel("Ngày")  
