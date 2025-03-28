@@ -21,6 +21,9 @@ background_base64 = get_base64(background_image_path)
 
 st.markdown("""
     <style>
+        h1, h2, h3, h4, h5, h6, p, li, a {
+            color: inherit !important;  /* Giữ màu gốc */
+    }
         /* Điều chỉnh font chữ theo kích thước màn hình */
         @media screen and (max-width: 768px) {
             h1, h2, h3, h4, h5, h6 {
@@ -72,39 +75,93 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 # Tự động làm mới trang mỗi 500 giây (500.000 ms)
 st_autorefresh(interval=500 * 1000, key="data_refresh")
 
-col3, col4 = st.columns([3, 5])
-with col3:
-    # Chèn logo và tiêu đề giống hình
-    st.markdown("""
-        <div style="display: flex; justify-content: flex-start; align-items: center;">
-            <img src="data:image/png;base64,{base64_str}" style="height: 80px; margin-right: 15px;">
+st.markdown("""
+    <style>
+        .header-container {
+            background-color: #F5F5F5 !important; /* Màu nền trắng */
+            padding: 40px 50px; /* Khoảng cách lề */
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Hiệu ứng đổ bóng */
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-container img {
+            height: 90px; /* Kích thước logo */
+            margin-right: 15px;
+        }
+        .menu-container {
+            display: flex;
+            gap: 20px;
+        }
+        .menu-container button {
+            background-color: transparent;
+            border: none;
+            font-size: 25px;
+            font-weight: bold;
+            color: purple; /* Màu chữ tím */
+            cursor: pointer;
+        }
+        .menu-container button:hover {
+            color: red;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+# Hàm mã hóa hình ảnh thành base64
+def get_base64(image_path):
+    with open(image_path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
+
+image_path = "Logo.png"  # Đường dẫn ảnh logo
+image_base64 = get_base64(image_path)
+
+# Hiển thị phần header với logo và menu
+st.markdown(f"""
+    <div class="header-container">
+        <div class="logo-container">
+            <img src="data:image/png;base64,{image_base64}" alt="Logo">
             <div>
-                <p style="font-size: 24px; font-weight: bold; margin: 0; color: #003399;">
+                <p style="font-size: 26px; font-weight: bold; color: #003399; margin: 0;">
                     KHOA XÂY DỰNG CÔNG TRÌNH THỦY
                 </p>
-                <p style="font-size: 30px; font-weight: bold; margin: 0; color: #003399;">
+                <p style="font-size: 32px; font-weight: bold; color: blue; margin: 0;">
                     NGHIÊN CỨU KHOA HỌC
                 </p>
             </div>
         </div>
-    """.format(base64_str=get_base64("Logo.png")), unsafe_allow_html=True)
+        <div class="menu-container">
+            <button onclick="alert('Trang chủ')">Trang chủ</button>
+            <button onclick="alert('Thành viên')">Thành viên</button>
+            <button onclick="alert('Giới thiệu')">Giới thiệu</button>
+            <button onclick="alert('Góp ý')">Góp ý</button>
+        </div>  
+    </div>
+""", unsafe_allow_html=True)
 
-with col4:
-    # Hiển thị biểu đồ mặc định trên trang chủ
-    st.write("")
-
+# Hiển thị biểu đồ mặc định trên trang chủ
+st.write("")
+st.write("")
+st.write("")
+st.write("")
+st.write("")
 st.markdown("""
     <div style="text-align: center;">
-        <p style="font-weight: bold; color: red; font-size: 50px; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); margin-top: 0;">
-            SẢN PHẨM DỰ BÁO LƯU LƯỢNG VỀ HỒ THỦY ĐIỆN A LƯỚI<br>DỰA TRÊN MÔ HÌNH HỌC MÁY
-        </p>
+        <p style="font-weight: bold; color: red; font-size: 50px; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);margin-top: 0;">SẢN PHẨM DỰ BÁO LƯU LƯỢNG VỀ HỒ THỦY ĐIỆN A LƯỚI<br>DỰA TRÊN MÔ HÌNH HỌC MÁY</p>
     </div>
     """, unsafe_allow_html=True)
+st.write("")
+st.write("")
 
 def load_data():
     conn = st.connection("gsheets", type=GSheetsConnection)  # Kết nối Google Sheets
     df = conn.read(worksheet="DuBao", ttl=0) # Đọc dữ liệu từ Google Sheets
     return df
+
 df = load_data()
 
 # Kiểm tra dữ liệu hợp lệ trước khi xử lý
@@ -120,6 +177,8 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
 
     col1, col2 = st.columns([2, 7])
     with col1:
+        st.write("")
+        st.write("")
         st.write("")
         st.write("")
         st.write("")
@@ -144,7 +203,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         # Lọc dữ liệu theo ngày được chọn
         filtered_df = df[df["Day"].isin(selected_days)]
 
-        q2_min = filtered_df["Q2"].min() - 2
+        q2_min = filtered_df["Q2"].min() - 1
         q2_max = filtered_df["Q2"].max() * 1.5
         x2_min = filtered_df["X"].min()
         x2_max = filtered_df["X"].max() * 3
