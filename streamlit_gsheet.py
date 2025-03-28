@@ -21,9 +21,6 @@ background_base64 = get_base64(background_image_path)
 
 st.markdown("""
     <style>
-        h1, h2, h3, h4, h5, h6, p, li, a {
-            color: inherit !important;  /* Giữ màu gốc */
-    }
         /* Điều chỉnh font chữ theo kích thước màn hình */
         @media screen and (max-width: 768px) {
             h1, h2, h3, h4, h5, h6 {
