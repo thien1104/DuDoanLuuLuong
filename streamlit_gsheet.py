@@ -92,8 +92,7 @@ with col3:
 with col4:
     # Hiển thị biểu đồ mặc định trên trang chủ
     st.write("")
-st.write("")
-st.write("")
+
 st.markdown("""
     <div style="text-align: center;">
         <p style="font-weight: bold; color: red; font-size: 50px; text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); margin-top: 0;">
@@ -101,14 +100,11 @@ st.markdown("""
         </p>
     </div>
     """, unsafe_allow_html=True)
-st.write("")
-st.write("")
 
 def load_data():
     conn = st.connection("gsheets", type=GSheetsConnection)  # Kết nối Google Sheets
     df = conn.read(worksheet="DuBao", ttl=0) # Đọc dữ liệu từ Google Sheets
     return df
-
 df = load_data()
 
 # Kiểm tra dữ liệu hợp lệ trước khi xử lý
@@ -124,8 +120,6 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
 
     col1, col2 = st.columns([2, 7])
     with col1:
-        st.write("")
-        st.write("")
         st.write("")
         st.write("")
         st.write("")
