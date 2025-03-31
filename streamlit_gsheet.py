@@ -105,7 +105,7 @@ st.write("")
 st.write("")
 
 def load_data():
-    conn = st.connection("gsheets", type=GSheetsConnection, spreadsheet=st.secrets["connections.gsheets"]["spreadsheet"])  # Kết nối Google Sheets
+    conn = st.connection("gsheets", type=GSheetsConnection,)  # Kết nối Google Sheets
     df = conn.read(worksheet="DuBao", ttl=0) # Đọc dữ liệu từ Google Sheets
     return df
 
