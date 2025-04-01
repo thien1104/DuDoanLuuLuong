@@ -162,7 +162,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
 
     col3, col4, col5 = st.columns([2, 5, 3])
     with col4:
-        st.markdown("<h2 style='; font-weight: bold; color: purple;'>TÓM TẮT ĐỀ TÀI</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='font-weight: bold; color: purple;'>TÓM TẮT ĐỀ TÀI</h2>", unsafe_allow_html=True)
         st.markdown("""
         <div style="text-align: justify; font-size: 18px; line-height: 1.6;">
         Dự báo dòng chảy về hồ chứa sao cho chính xác và biết trước nhiều ngày để chủ động vận hành khai thác hiệu quả là công việc không hề đơn giản và luôn thách thức các nghiên cứu. 
