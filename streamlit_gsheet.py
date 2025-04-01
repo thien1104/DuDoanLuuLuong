@@ -115,7 +115,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         days_ahead = int(selected_option.split()[0])  # Lấy số ngày từ chuỗi
         filtered_df = df.iloc[7 : 7 + days_ahead]
 
-    st.markdown("<h2 style='text-align: center; font-size: 40px; color: purple;'>📊 SẢN PHẨM DỰ BÁO LƯU LƯỢNG VỀ HỒ A LƯỚI</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; font-size: 40px; color: purple;'>📊 SẢN PHẨM DỰ BÁO LƯU LƯỢNG VỀ HỒ THỦY ĐIỆN A LƯỚI</h2>", unsafe_allow_html=True)
     fig, ax1 = plt.subplots(figsize=(9, 4), facecolor=None)
     fig.patch.set_alpha(0.6)
 
