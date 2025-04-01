@@ -70,7 +70,7 @@ page_bg_img = f"""
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
 #Hiển thị tiêu đề ứng dụng
-st.image(r"C:\NCKH\logo_anh\Tieu_de.png", use_column_width=True)
+st.image("Tieu_de.png", use_column_width=True)
 
 # Tự động làm mới trang mỗi 500 giây (500.000 ms)
 st_autorefresh(interval=500 * 1000, key="data_refresh")
@@ -93,7 +93,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     # Định dạng lại cột ngày để hiển thị đẹp hơn
     df["Day"] = df["Day"].dt.strftime("%d/%m")
 
-    st.markdown("<h3>📅 Chọn số ngày bạn muốn hiển thị:</h3>", unsafe_allow_html=True)
+    st.markdown("<h3>📅 Chọn ngày hiển thị:</h3>", unsafe_allow_html=True)
     day_options = ["Hiển thị 7 ngày tới"] + df["Day"].tolist()
     selected_days = st.multiselect("", day_options, default=["Hiển thị 7 ngày tới"], key="day_selector", label_visibility="collapsed")
     st.markdown(
