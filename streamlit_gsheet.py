@@ -115,7 +115,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         days_ahead = int(selected_option.split()[0])  # Lấy số ngày từ chuỗi
         filtered_df = df.iloc[7 : 7 + days_ahead]
 
-    st.markdown("<h2 style='text-align: center; font-size: 45px; color: purple;'>📊 Sản phẩm dự báo lưu lượng về hồ A Lưới</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; font-size: 45px; color: purple;'>📊 SẢN PHẨM DỰ BÁO LƯU LƯỢNG VỀ HỒ A LƯỚI</h2>", unsafe_allow_html=True)
     fig, ax1 = plt.subplots(figsize=(9, 4), facecolor=None)
     fig.patch.set_alpha(0.6)
 
@@ -210,6 +210,6 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
             </div>
             """, unsafe_allow_html=True)
     with col5:
-        st.markdown("<p style='font-size: 32px; font-weight: bold; color: purple;'>BẢN ĐỒ </p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size: 32px; font-weight: bold; color: purple;'>VỊ TRÍ HỒ A LƯỚI</p>", unsafe_allow_html=True)
         st.components.v1.iframe("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5183.405695834576!2d107.16230575663592!3d16.198328500532277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3140374a45533dc3%3A0x8147ee687f758a43!2zxJDhuq1wIFRoxrDhu6NuZyBOZ3hu5NuIFRodcyJeSDEkGnDqsyjbiBBIEzGsMahzIFp!5e1!3m2!1svi!2s!4v1743523443244!5m2!1svi!2s",
                      width=500, height=300)
