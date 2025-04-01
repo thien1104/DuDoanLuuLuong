@@ -19,38 +19,28 @@ def get_base64(file_path):
 background_image_path = "A_luoi.jpg"
 background_base64 = get_base64(background_image_path)
 
-st.markdown("""
+st.markdown(f"""
     <style>
-        /* Điều chỉnh font chữ theo kích thước màn hình */
-        @media screen and (max-width: 768px) {
-            h1, h2, h3, h4, h5, h6 {
-                font-size: 20px !important;
-            }
-            p, li, a {
-                font-size: 16px !important;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            h1, h2, h3, h4, h5, h6 {
-                font-size: 16px !important;
-            }
-            p, li, a {
-                font-size: 14px !important;
-            }
-        }use_container_width
-
-        /* Căn chỉnh logo */
-        .stImage img {
-            max-width: 100% !important;
-            height: auto !important;
-        }
-
-        /* Điều chỉnh menu */
-        .css-18e3th9 {
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+        .stApp {{
+            background-image: url("data:image/jpg;base64,{background_base64}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }}
+        h1, h2, h3, h4, h5, h6 {{
+            color: purple;
+        }}
+        @media screen and (max-width: 768px) {{
+            h1 {{ font-size: 24px !important; }}
+            h2 {{ font-size: 22px !important; }}
+            h3 {{ font-size: 20px !important; }}
+            p, li, a {{ font-size: 16px !important; }}
+        }}
+        @media screen and (max-width: 480px) {{
+            h1 {{ font-size: 20px !important; }}
+            h2 {{ font-size: 18px !important; }}
+            p, li, a {{ font-size: 14px !important; }}
+        }}
     </style>
 """, unsafe_allow_html=True)
 
