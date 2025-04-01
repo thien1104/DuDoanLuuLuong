@@ -39,9 +39,20 @@ st.markdown("""
                 font-size: 14px !important;
             }
         }
+
+        /* Căn chỉnh logo */
+        .stImage img {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+
+        /* Điều chỉnh menu */
+        .css-18e3th9 {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
     </style>
 """, unsafe_allow_html=True)
-
 
 # CSS tùy chỉnh để thêm hình nền
 page_bg_img = f"""
