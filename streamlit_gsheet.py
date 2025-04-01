@@ -21,33 +21,24 @@ background_base64 = get_base64(background_image_path)
 
 st.markdown("""
     <style>
-        /* Kích thước chữ trên màn hình lớn */
-        h1 { font-size: 32px !important; }
-        h2 { font-size: 28px !important; }
-        h3 { font-size: 24px !important; }
-        p, li, a { font-size: 18px !important; }
-
-        /* Màn hình tablet (từ 768px trở xuống) */
+        /* Điều chỉnh font chữ theo kích thước màn hình */
         @media screen and (max-width: 768px) {
-            h1 { font-size: 26px !important; }
-            h2 { font-size: 24px !important; }
-            h3 { font-size: 20px !important; }
-            p, li, a { font-size: 16px !important; }
+            h1, h2, h3, h4, h5, h6 {
+                font-size: 20px !important;
+            }
+            p, li, a {
+                font-size: 16px !important;
+            }
         }
 
-        /* Màn hình điện thoại (từ 480px trở xuống) */
         @media screen and (max-width: 480px) {
-            h1 { font-size: 22px !important; }
-            h2 { font-size: 20px !important; }
-            h3 { font-size: 18px !important; }
-            p, li, a { font-size: 14px !important; }
+            h1, h2, h3, h4, h5, h6 {
+                font-size: 16px !important;
+            }
+            p, li, a {
+                font-size: 14px !important;
+            }
         }
-
-        /* Điều chỉnh chiều rộng của select box */
-        div[data-baseweb="select"] {
-            width: 100% !important;
-        }
-
     </style>
 """, unsafe_allow_html=True)
 
