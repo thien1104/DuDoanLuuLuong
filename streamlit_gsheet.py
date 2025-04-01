@@ -19,49 +19,27 @@ def get_base64(file_path):
 background_image_path = "A_luoi.jpg"
 background_base64 = get_base64(background_image_path)
 
-st.markdown("""
-    <style>
-        body {
-            overflow-x: auto !important;
-        }
-    </style>
-""", unsafe_allow_html=True)
-st.markdown("""
-    <style>
-        /* Điều chỉnh kích thước chữ tự động theo kích thước màn hình */
-        @media screen and (min-width: 768px) {
-            h1 { font-size: 3vw !important; }
-            h2 { font-size: 2.5vw !important; }
-            h3 { font-size: 2vw !important; }
-            p, li, a { font-size: 1.5vw !important; }
-        }
-
-        @media screen and (min-width: 1024px) {
-            h1 { font-size: 2.5vw !important; }
-            h2 { font-size: 2vw !important; }
-            h3 { font-size: 1.8vw !important; }
-            p, li, a { font-size: 1.2vw !important; }
-        }
-
-        /* Đảm bảo chữ không bị xuống dòng nếu nội dung dài */
-        div.stMarkdown p, div.stMarkdown li, div.stMarkdown a {
-            white-space: nowrap;
-            overflow-x: auto;
-            display: block;
-        }
-
-        /* Cho phép nội dung trong các cột được cuộn ngang nếu bị che khuất */
-        .scroll-container {
-            overflow-x: auto;
-            white-space: nowrap;
-            width: 100%;
-        }
-
-        /* Tăng kích thước biểu đồ khi phóng to màn hình */
-        div[data-testid="stImage"] img {
-            max-width: 100% !important;
-            height: auto !important;
-        }
+tyle>
+        .stApp {{
+            background-image: url("data:image/jpg;base64,{background_base64}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }}
+        h1, h2, h3, h4, h5, h6 {{
+            color: purple;
+        }}
+        @media screen and (max-width: 768px) {{
+            h1 {{ font-size: 24px !important; }}
+            h2 {{ font-size: 22px !important; }}
+            h3 {{ font-size: 20px !important; }}
+            p, li, a {{ font-size: 16px !important; }}
+        }}
+        @media screen and (max-width: 480px) {{
+            h1 {{ font-size: 20px !important; }}
+            h2 {{ font-size: 18px !important; }}
+            p, li, a {{ font-size: 14px !important; }}
+        }}
     </style>
 """, unsafe_allow_html=True)
 
