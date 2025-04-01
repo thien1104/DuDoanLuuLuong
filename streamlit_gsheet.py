@@ -93,7 +93,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     # Định dạng lại cột ngày để hiển thị đẹp hơn
     df["Day"] = df["Day"].dt.strftime("%d/%m")
 
-    st.markdown("<h3>📅 Chọn số ngày hiển thị:</h3>", unsafe_allow_html=True)
+    st.markdown("<h3>📅 Chọn ngày hiển thị:</h3>", unsafe_allow_html=True)
     day_options = ["Quá khứ và dự báo", "7 ngày quá khứ", "2 ngày tới", "3 ngày tới", "4 ngày tới", "5 ngày tới", "6 ngày tới", "7 ngày tới"]
     st.markdown("""
     <style>
