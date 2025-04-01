@@ -101,7 +101,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     st.markdown("""
     <style>
     div[data-baseweb="select"] {
-        width: 300px !important;  /* Điều chỉnh chiều rộng theo mong muốn */}
+        width: 45% !important;  /* Điều chỉnh chiều rộng theo mong muốn */}
     </style>""", unsafe_allow_html=True)
 
     selected_option = st.selectbox("", day_options, index=0, key="day_selector", label_visibility="collapsed")
@@ -118,7 +118,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         days_ahead = int(selected_option.split()[0])  # Lấy số ngày từ chuỗi
         filtered_df = df.iloc[7 : 7 + days_ahead]
 
-    st.markdown("<div style='text-align: center; font-size: 40px; font-weight: bold; color: purple;'>📊 SẢN PHẨM DỰ BÁO LƯU LƯỢNG VỀ HỒ THỦY ĐIỆN A LƯỚI</div>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; font-size: 40px; font-weight: bold; color: purple;'>📊 SẢN PHẨM DỰ BÁO LƯU LƯỢNG VỀ HỒ THỦY ĐIỆN A LƯỚI</h2>", unsafe_allow_html=True)
     fig, ax1 = plt.subplots(figsize=(9, 4), facecolor=None)
     fig.patch.set_alpha(0.6)
 
@@ -175,7 +175,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
 
     col3, col4, col5 = st.columns([3, 5, 3])
     with col4:
-        st.markdown("<div style='font-size: 32px; font-weight: bold; color: purple;'>TÓM TẮT ĐỀ TÀI</div>", unsafe_allow_html=True)
+        st.markdown("<h2 style='font-size: 32px; font-weight: bold; color: purple;'>TÓM TẮT ĐỀ TÀI</h2>", unsafe_allow_html=True)
         st.markdown("""
         <div style="text-align: justify; font-size: 18px; line-height: 1.6;">
         Dự báo dòng chảy về hồ chứa sao cho chính xác và biết trước nhiều ngày để chủ động vận hành khai thác hiệu quả là công việc không hề đơn giản và luôn thách thức các nghiên cứu. 
@@ -189,7 +189,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         """, unsafe_allow_html=True)
 
     with col3:
-        st.markdown("<div style='font-size: 32px; font-weight: bold; color: purple; margin-bottom: -40px;'>THÀNH VIÊN NHÓM</div>", unsafe_allow_html=True)
+        st.markdown("<h2 style='font-size: 32px; font-weight: bold; color: purple; margin-bottom: -40px;'>THÀNH VIÊN NHÓM</h2>", unsafe_allow_html=True)
         selected_option = st.selectbox("",["Sinh viên thực hiện", "Giáo viên hướng dẫn"])
         if selected_option == "Giáo viên hướng dẫn":
             st.markdown(f"""
@@ -213,6 +213,6 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
             </div>
             """, unsafe_allow_html=True)
     with col5:
-        st.markdown("<div style='font-size: 32px; font-weight: bold; color: purple;'>VỊ TRÍ HỒ A LƯỚI</div>", unsafe_allow_html=True)
+        st.markdown("<h2 style='font-size: 32px; font-weight: bold; color: purple;'>VỊ TRÍ HỒ A LƯỚI</h2>", unsafe_allow_html=True)
         st.components.v1.iframe("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5183.445656933609!2d107.16354377708113!3d16.196807863014435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3140374a45533dc3%3A0x8147ee687f758a43!2zxJDhuq1wIFRoxrDhu6NuZyBOZ3Xhu5NuIFRodcyJeSDEkGnDqsyjbiBBIEzGsMahzIFp!5e1!3m2!1svi!2s!4v1743527770714!5m2!1svi!2s",
                  width=500, height=300)
