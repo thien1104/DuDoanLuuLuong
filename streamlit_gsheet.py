@@ -176,7 +176,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         """, unsafe_allow_html=True)
 
     with col3:
-        st.markdown("<p style='font-size: 32px; font-weight: bold; color: purple;'>THÀNH VIÊN NHÓM</p>", unsafe_allow_html=True)
+        st.markdown("<h2 style='font-weight: bold; color: purple;'>THÀNH VIÊN NHÓM</h2>", unsafe_allow_html=True)
         selected_option = st.selectbox("",["Sinh viên thực hiện", "Giáo viên hướng dẫn"])
         if selected_option == "Giáo viên hướng dẫn":
             st.markdown(f"""
