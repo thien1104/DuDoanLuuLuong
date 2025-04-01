@@ -81,7 +81,7 @@ page_bg_img = f"""
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
 #Hiển thị tiêu đề ứng dụng
-st.image(r"c:\NCKH\logo_anh\Tieu_de.png", use_container_width=True)
+st.image(r"Tieu_de.png", use_container_width=True)
 
 # Tự động làm mới trang mỗi 500 giây (500.000 ms)
 st_autorefresh(interval=500 * 1000, key="data_refresh")
