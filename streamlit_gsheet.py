@@ -101,7 +101,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     st.markdown("""
     <style>
     div[data-baseweb="select"] {
-        width: 45% !important;  /* Điều chỉnh chiều rộng theo mong muốn */}
+        width: 300px !important;  /* Điều chỉnh chiều rộng theo mong muốn */}
     </style>""", unsafe_allow_html=True)
 
     selected_option = st.selectbox("", day_options, index=0, key="day_selector", label_visibility="collapsed")
