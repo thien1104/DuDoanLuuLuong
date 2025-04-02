@@ -104,7 +104,8 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         width: 45% !important;  /* Điều chỉnh chiều rộng theo mong muốn */}
     </style>""", unsafe_allow_html=True)
 
-    selected_option = st.selectbox("", day_options, index=0, key="day_selector", label_visibility="collapsed"
+    selected_option = st.selectbox("", day_options, index=0, key="day_selector", label_visibility="collapsed")
+
 
     # Lọc dữ liệu theo lựa chọn
     if selected_option == "7 ngày quá khứ":
