@@ -80,11 +80,27 @@ with col2:
             KỶ NIỆM 50 NĂM THÀNH LẬP TRƯỜNG ĐẠI HỌC BÁCH KHOA
         </h3>
     </div>
+    <style>
+        @media screen and (max-width: 768px) {
+            h2 {
+                font-size: 30px !important;
+            }
+            h3 {
+                font-size: 25px !important;
+            }
+        }
+        @media screen and (max-width: 480px) {
+            h2 {
+                font-size: 25px !important;
+            }
+            h3 {
+                font-size: 20px !important;
+            }
+        }
+    </style>
     """,
     unsafe_allow_html=True
 )
-
-
 
 # Tự động làm mới trang mỗi 500 giây (500.000 ms)
 st_autorefresh(interval=500 * 1000, key="data_refresh")
