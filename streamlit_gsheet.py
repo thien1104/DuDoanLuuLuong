@@ -71,12 +71,12 @@ with col1:
         <style>
             @media screen and (max-width: 768px) {
                 .logo-img {
-                    width: 100px !important; /* Điều chỉnh width nhỏ lại trên điện thoại */
+                    width: 400px !important;
                 }
             }
             @media screen and (max-width: 480px) {
                 .logo-img {
-                    width: 100px !important; /* Điều chỉnh width nhỏ lại trên điện thoại */
+                    width: 100px !important;
                 }
             }
         </style>
