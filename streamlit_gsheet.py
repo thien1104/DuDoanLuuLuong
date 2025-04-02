@@ -91,10 +91,10 @@ with col2:
         }
         @media screen and (max-width: 480px) {
             h2 {
-                font-size: 25px !important;
+                font-size: 22px !important;
             }
             h3 {
-                font-size: 20px !important;
+                font-size: 18px !important;
             }
         }
     </style>
