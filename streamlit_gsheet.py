@@ -70,7 +70,11 @@ page_bg_img = f"""
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
 #Hiển thị tiêu đề ứng dụng
-st.image("Tieu_de.png", use_container_width=True)
+col1, col2 = st.columns([1, 3.5])
+with col2:
+    st.image("Tieude.png", use_container_width=True)
+with col1:
+    st.image("3logo.png", use_container_width=True)
 
 # Tự động làm mới trang mỗi 500 giây (500.000 ms)
 st_autorefresh(interval=500 * 1000, key="data_refresh")
@@ -105,7 +109,6 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     </style>""", unsafe_allow_html=True)
 
     selected_option = st.selectbox("", day_options, index=0, key="day_selector", label_visibility="collapsed")
-
 
     # Lọc dữ liệu theo lựa chọn
     if selected_option == "7 ngày quá khứ":
