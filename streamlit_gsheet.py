@@ -66,7 +66,19 @@ col1, col2 = st.columns([1, 4])  # Cột logo nhỏ hơn, cột chữ lớn hơn
 
 # Hiển thị logo với kích thước nhỏ hơn
 with col1:
-    st.image("3logo.png", width=400)  # Điều chỉnh width nhỏ lại
+    st.markdown(
+        """
+        <style>
+            @media screen and (max-width: 768px) {
+                .logo-img {
+                    width: 200px !important; /* Điều chỉnh width nhỏ lại trên điện thoại */
+                }
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+    st.image("3logo.png", width=400, use_container_width=False, output_format="auto", caption=None, clamp=False, channels="RGB")
 
 # Hiển thị tiêu đề với chữ lớn hơn
 with col2:
