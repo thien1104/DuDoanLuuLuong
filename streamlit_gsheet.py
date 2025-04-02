@@ -96,7 +96,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     # Định dạng lại cột ngày để hiển thị đẹp hơn
     df["Day"] = df["Day"].dt.strftime("%d/%m")
 
-    st.markdown("<h2 style='font-size: 26px; color: #003399; font-weight: bold;'>📅 Chọn ngày hiển thị:</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='font-size: 26px; color: #003399; font-weight: bold;'>📅 Chọn thời đoạn hiển thị:</h2>", unsafe_allow_html=True)
     day_options = ["Quá khứ và dự báo", "7 ngày quá khứ", "2 ngày tới", "3 ngày tới", "4 ngày tới", "5 ngày tới", "6 ngày tới", "7 ngày tới"]
     st.markdown("""
     <style>
@@ -104,8 +104,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         width: 45% !important;  /* Điều chỉnh chiều rộng theo mong muốn */}
     </style>""", unsafe_allow_html=True)
 
-    selected_option = st.selectbox("", day_options, index=0, key="day_selector", label_visibility="collapsed")
-
+    selected_option = st.selectbox("", day_options, index=0, key="day_selector", label_visibility="collapsed"
 
     # Lọc dữ liệu theo lựa chọn
     if selected_option == "7 ngày quá khứ":
@@ -118,7 +117,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         days_ahead = int(selected_option.split()[0])  # Lấy số ngày từ chuỗi
         filtered_df = df.iloc[7 : 7 + days_ahead]
 
-    st.markdown("<h2 style='text-align: center; font-size: 40px; font-weight: bold; color: purple;'>📊 SẢN PHẨM DỰ BÁO LƯU LƯỢNG VỀ HỒ THỦY ĐIỆN A LƯỚI</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; font-size: 40px; font-weight: bold; color: purple;'>📊 Dự báo lưu lượng lượng về hồ thuỷ điện A Lưới dựa trên kỹ thuật học máy</h2>", unsafe_allow_html=True)
     fig, ax1 = plt.subplots(figsize=(9, 4), facecolor=None)
     fig.patch.set_alpha(0.6)
 
@@ -189,29 +188,27 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         """, unsafe_allow_html=True)
 
     with col3:
-        st.markdown("<h2 style='font-size: 32px; font-weight: bold; color: purple; margin-bottom: -40px;'>THÀNH VIÊN NHÓM</h2>", unsafe_allow_html=True)
-        selected_option = st.selectbox("",["Sinh viên thực hiện", "Giáo viên hướng dẫn"])
-        if selected_option == "Giáo viên hướng dẫn":
-            st.markdown(f"""
-            <div style="display: flex; flex-direction: column;">
-            <p style="font-size: 26px; color: #003399; font-weight: bold; margin-bottom: 2px;">Giáo viên hướng dẫn:</p>
-            <div style="font-size: 24px; line-height: 1.5;">
-            PGS.TS. Nguyễn Chí Công<br>
-            TS. Đoàn Viết Long<br>
-            ThS. Phạm Lý Triều
-            </div>
-            </div>
-            """, unsafe_allow_html=True)
-        elif selected_option == "Sinh viên thực hiện":   
-            st.markdown(f"""
-            <div style="display: flex; flex-direction: column;">
-            <p style="font-size: 26px; color: #003399; font-weight: bold; margin-bottom: 2px;">Sinh viên thực hiện:</p>
+        st.markdown("<h2 style='font-size: 32px; font-weight: bold; color: purple; text-align: left; margin-bottom: -20px;'>THÀNH VIÊN THỰC HIỆN</h2>", unsafe_allow_html=True)
+        st.markdown(f"""
+            <div style="text-align: left;">
+            <p style="font-size: 26px; color: #003399; font-weight: bold; margin-bottom: 1px;">Sinh viên thực hiện:</p>
             <div style="font-size: 24px; line-height: 1.5;">
             Lê Tấn Duy - 22DTTM<br>
             Lê Thanh Thiên - 22DTTM
             </div>
             </div>
             """, unsafe_allow_html=True)
+        st.markdown(f"""
+            <div style="text-align: left; margin-top: 20px; ">
+            <p style="font-size: 26px; color: #003399; font-weight: bold;  margin-bottom: 1px; ">Giáo viên hướng dẫn:</p>
+            <div style="font-size: 24px; line-height: 1.5;">
+            PGS.TS. Nguyễn Chí Công<br>
+            TS. Đoàn Viết Long<br>
+            ThS. Phạm Lý Triều<br>
+            ThS. Nguyễn Hữu Huy
+            </div>
+            </div>
+            """, unsafe_allow_html=True)  
     with col5:
         st.markdown("<h2 style='font-size: 32px; font-weight: bold; color: purple;'>VỊ TRÍ HỒ A LƯỚI</h2>", unsafe_allow_html=True)
         st.components.v1.iframe("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5183.445656933609!2d107.16354377708113!3d16.196807863014435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3140374a45533dc3%3A0x8147ee687f758a43!2zxJDhuq1wIFRoxrDhu6NuZyBOZ3Xhu5NuIFRodcyJeSDEkGnDqsyjbiBBIEzGsMahzIFp!5e1!3m2!1svi!2s!4v1743527770714!5m2!1svi!2s",
