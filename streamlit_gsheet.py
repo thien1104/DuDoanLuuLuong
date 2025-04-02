@@ -216,7 +216,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         Tuy nhiên, tuỳ thuộc vào đặc tính dữ liệu thống kê và đặc tính vật lý của lưu vực mà mỗi mô hình học máy sẽ học và cho kết quả dự đoán với độ tin cậy khác nhau. 
         Nghiên cứu này sẽ thực hiện trên tập dữ liệu gồm lượng mưa và lưu lượng của lưu vực hồ A Lưới từ năm 2017 đến năm 2021 với 03 mô hình học máy được xem xét đó là RF, XGBoost và LSTM. 
         Kết quả huấn luyện và kiểm tra cho thấy mô hình LSTM cho chỉ số đánh giá tốt hơn 2 mô hình còn lại (NSE =0.93; MAE = 17.47; RMSE = 33.11). 
-        Từ đó sử dụng mô hình LSTM để dự báo lưu lượng về hồ A Lưới từ dữ liệu mưa dự báo sẳn có trên websites weather cho lưu vực hồ A Lưới. 
+        Từ đó sử dụng mô hình LSTM để dự báo lưu lượng về hồ A Lưới từ dữ liệu mưa dự báo được cung cấp bởi websites Weather API cho lưu vực hồ A Lưới. 
         Các kết quả dự báo này được tự động cập nhật ứng dụng web Streamlit.
         </div>
         """, unsafe_allow_html=True)
