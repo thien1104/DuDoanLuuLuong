@@ -24,32 +24,20 @@ st.markdown("""
         /* Điều chỉnh font chữ theo kích thước màn hình */
         @media screen and (max-width: 768px) {
             h1, h2, h3, h4, h5, h6 {
-                font-size: 20px !important;
-            }
-            p, li, a {
-                font-size: 16px !important;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            h1, h2, h3, h4, h5, h6 {
-                font-size: 16px !important;
+                font-size: 18px !important;
             }
             p, li, a {
                 font-size: 14px !important;
             }
         }
 
-        /* Căn chỉnh logo */
-        .stImage img {
-            max-width: 100% !important;
-            height: auto !important;
-        }
-
-        /* Điều chỉnh menu */
-        .css-18e3th9 {
-            flex-wrap: wrap;
-            justify-content: center;
+        @media screen and (max-width: 480px) {
+            h1, h2, h3, h4, h5, h6 {
+                font-size: 14px !important;
+            }
+            p, li, a {
+                font-size: 12px !important;
+            }
         }
     </style>
 """, unsafe_allow_html=True)
@@ -71,10 +59,32 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 
 #Hiển thị tiêu đề ứng dụng
 col1, col2 = st.columns([1, 3.5])
-with col2:
-    st.image("Tieude.png", use_container_width=True)
+import streamlit as st
+
+# Tạo layout với hai cột
+col1, col2 = st.columns([1, 4])  # Cột logo nhỏ hơn, cột chữ lớn hơn
+
+# Hiển thị logo với kích thước nhỏ hơn
 with col1:
-    st.image("3logo.png", use_container_width=True)
+    st.image("c:/NCKH/logo_anh/3logo.png", width=400)  # Điều chỉnh width nhỏ lại
+
+# Hiển thị tiêu đề với chữ lớn hơn
+with col2:
+    st.markdown(
+    """
+    <div style="white-space: nowrap; overflow-x: auto; width: max-content;">
+        <h2 style="color: red; font-weight: bold; text-align: center; font-size: 40px; margin-bottom: -20px;">
+            SẢN PHẨM SINH VIÊN NGHIÊN CỨU KHOA HỌC NĂM HỌC 2024-2025
+        </h2>
+        <h3 style="color: blue; font-weight: bold; text-align: center; font-size: 35px;">
+            KỶ NIỆM 50 NĂM THÀNH LẬP TRƯỜNG ĐẠI HỌC BÁCH KHOA
+        </h3>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+
 
 # Tự động làm mới trang mỗi 500 giây (500.000 ms)
 st_autorefresh(interval=500 * 1000, key="data_refresh")
@@ -100,7 +110,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     # Định dạng lại cột ngày để hiển thị đẹp hơn
     df["Day"] = df["Day"].dt.strftime("%d/%m")
 
-    st.markdown("<h2 style='font-size: 26px; color: #003399; font-weight: bold;'>📅 Chọn thời đoạn hiển thị:</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='font-size: 24px; color: #003399; font-weight: bold;'>📅 Chọn thời đoạn hiển thị:</h2>", unsafe_allow_html=True)
     day_options = ["Quá khứ và dự báo", "7 ngày quá khứ", "2 ngày tới", "3 ngày tới", "4 ngày tới", "5 ngày tới", "6 ngày tới", "7 ngày tới"]
     st.markdown("""
     <style>
@@ -121,7 +131,12 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         days_ahead = int(selected_option.split()[0])  # Lấy số ngày từ chuỗi
         filtered_df = df.iloc[7 : 7 + days_ahead]
 
-    st.markdown("<h2 style='text-align: center; font-size: 40px; font-weight: bold; color: purple;'>📊 Dự báo lưu lượng lượng về hồ thuỷ điện A Lưới dựa trên kỹ thuật học máy</h2>", unsafe_allow_html=True)
+    st.markdown("""
+        <h2 style='font-size: 35px; font-weight: bold; color: purple; text-align: center;'>
+            📊 Dự báo lưu lượng về hồ thuỷ điện A Lưới dựa trên kỹ thuật học máy
+        </h2> 
+""", unsafe_allow_html=True)
+    
     fig, ax1 = plt.subplots(figsize=(9, 4), facecolor=None)
     fig.patch.set_alpha(0.6)
 
@@ -169,14 +184,13 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         ax2.annotate(f"{txt:.1f}", (filtered_df["Day"].iloc[i], filtered_df["X"].iloc[i]),
                      textcoords="offset points", xytext=(0, 5), ha='center', fontsize=10, color="blue")
 
-
     # Thêm chú thích cho biểu đồ
     fig.legend(loc="upper center", bbox_to_anchor=(0.5, -0.1), fancybox=True, shadow=True, ncol=2)
 
     fig.tight_layout()
     st.pyplot(fig)
 
-    col3, col4, col5 = st.columns([3, 5, 3])
+    col3, col4, col5 = st.columns([3, 5, 3], gap="small")
     with col4:
         st.markdown("<h2 style='font-size: 32px; font-weight: bold; color: purple;'>TÓM TẮT ĐỀ TÀI</h2>", unsafe_allow_html=True)
         st.markdown("""
@@ -215,5 +229,6 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
             """, unsafe_allow_html=True)  
     with col5:
         st.markdown("<h2 style='font-size: 32px; font-weight: bold; color: purple;'>VỊ TRÍ HỒ A LƯỚI</h2>", unsafe_allow_html=True)
-        st.components.v1.iframe("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5183.445656933609!2d107.16354377708113!3d16.196807863014435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3140374a45533dc3%3A0x8147ee687f758a43!2zxJDhuq1wIFRoxrDhu6NuZyBOZ3Xhu5NuIFRodcyJeSDEkGnDqsyjbiBBIEzGsMahzIFp!5e1!3m2!1svi!2s!4v1743527770714!5m2!1svi!2s",
-                 width=500, height=300)
+        st.components.v1.iframe("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5183.445656933609!2d107.16354377708113!3d16.196807863014435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3140374a45533dc3%3A0x8147ee687f758a43!2zxJDhuq1wIFRoxrDhu6NuZyBOZ3Xhu5NuIFRodcyJeSDEkGnDqsyjbiBBIEzGsMahzIFp!5e0!3m2!1svi!2s!4v1743527770714!5m2!1svi!2s",
+                                 height=300, scrolling=False)
+        st.image("c:/NCKH/logo_anh/Aluoi.jpg", use_container_width=True)  # Điều chỉnh kích thước ảnh theo tỉ lệ cột
