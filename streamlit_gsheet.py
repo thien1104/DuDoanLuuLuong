@@ -66,7 +66,7 @@ col1, col2 = st.columns([1, 4])  # Cột logo nhỏ hơn, cột chữ lớn hơn
 
 # Hiển thị logo với kích thước nhỏ hơn
 with col1:
-    st.image("3logo.png", width=400)
+    st.image("c:/NCKH/logo_anh/3logo.png", width=400)  # Điều chỉnh width nhỏ lại
 
 # Hiển thị tiêu đề với chữ lớn hơn
 with col2:
@@ -83,18 +83,18 @@ with col2:
     <style>
         @media screen and (max-width: 768px) {
             h2 {
-                font-size: 20px !important;
+                font-size: 30px !important;
             }
             h3 {
-                font-size: 18px !important;
+                font-size: 25px !important;
             }
         }
         @media screen and (max-width: 480px) {
             h2 {
-                font-size: 18px !important;
+                font-size: 25px !important;
             }
             h3 {
-                font-size: 16px !important;
+                font-size: 20px !important;
             }
         }
     </style>
@@ -139,8 +139,6 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     # Lọc dữ liệu theo lựa chọn
     if selected_option == "7 ngày quá khứ":
         filtered_df = df.iloc[:7]
-    #elif selected_option == "Hôm nay":
-        #filtered_df = df.iloc[7:8]    
     elif selected_option == "Quá khứ và dự báo":
         filtered_df = df
     else:
@@ -156,9 +154,9 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     fig, ax1 = plt.subplots(figsize=(9, 4), facecolor=None)
     fig.patch.set_alpha(0.6)
 
-    # Chia dữ liệu thành 2 phần: 7 ngày đầu & 7 ngày sau
-    past = filtered_df.iloc[:8]  # 7 ngày đầu (cũ hơn)
-    present = filtered_df.iloc[7:]  # 7 ngày sau (mới hơn)
+    # Chia dữ liệu thành 2 phần: 7 ngày cũ & 7 ngày sau
+    past = filtered_df.iloc[:8]  
+    present = filtered_df.iloc[7:]  
 
     # Tính khoảng dựa trên toàn bộ dữ liệu để giữ cố định trục Y
     q2 = abs(df["Q2"].max() - df["Q2"].min()) * 0.15
@@ -170,19 +168,29 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     # Trục Y bên trái (Lưu lượng Q2)
     ax1.set_xlabel("Ngày")
     ax1.set_ylabel("Lưu lượng (m³/s)", color="#cd6001")
-    ax1.plot(past["Day"], past["Q2"], marker="o", linestyle="-", color="brown", label="Lưu lượng quá khứ")
-    ax1.plot(present["Day"], present["Q2"], marker="o", linestyle="--", color="#fdac01", label="Lưu lượng dự báo")
+    if selected_option == "7 ngày quá khứ":
+        ax1.plot(filtered_df["Day"], filtered_df["Q2"], marker="o", linestyle="-", color="brown", label="Lưu lượng dự báo")
+        for i, txt in enumerate(filtered_df["Q2"]):
+            ax1.annotate(f"{txt:.1f}", (filtered_df["Day"].iloc[i], filtered_df["Q2"].iloc[i]),
+                         textcoords="offset points", xytext=(0, 5), ha='center', fontsize=10, color="brown")
+    elif selected_option == "Quá khứ và dự báo":
+        ax1.plot(past["Day"], past["Q2"], marker="o", linestyle="-", color="brown", label="Lưu lượng quá khứ")
+        ax1.plot(present["Day"], present["Q2"], marker="o", linestyle="--", color="#fdac01", label="Lưu lượng dự báo")
+        for i, txt in enumerate(past["Q2"]):
+            ax1.annotate(f"{txt:.1f}", (past["Day"].iloc[i], past["Q2"].iloc[i]),
+                         textcoords="offset points", xytext=(0, 5), ha='center', fontsize=10, color="brown")
+        for i, txt in enumerate(present["Q2"]):
+            ax1.annotate(f"{txt:.1f}", (present["Day"].iloc[i], present["Q2"].iloc[i]),
+                         textcoords="offset points", xytext=(0, 5), ha='center', fontsize=10, color="#fdac01")
+    else:
+        ax1.plot(filtered_df["Day"], filtered_df["Q2"], marker="o", linestyle="--", color="#fdac01", label="Lưu lượng dự báo")
+        for i, txt in enumerate(filtered_df["Q2"]):
+            ax1.annotate(f"{txt:.1f}", (filtered_df["Day"].iloc[i], filtered_df["Q2"].iloc[i]),
+                         textcoords="offset points", xytext=(0, 5), ha='center', fontsize=10, color="#fdac01")
     ax1.tick_params(axis="y", labelcolor="#cd6001")
     ax1.set_ylim(q2_min, q2_max)
     ax1.set_facecolor("none")  # Trục chính không có nền
     ax1.grid(True, linestyle="--", color="#cd6001", alpha=0.5)  # Lưới cho trục X và trục Y bên trái (Q2)
-    # Hiển thị giá trị lưu lượng dự đoán trên biểu đồ
-    for i, txt in enumerate(past["Q2"]):
-        ax1.annotate(f"{txt:.1f}", (past["Day"].iloc[i], past["Q2"].iloc[i]),
-             textcoords="offset points", xytext=(0, 5), ha='center', fontsize=10, color="brown")
-    for i, txt in enumerate(present["Q2"]):
-        ax1.annotate(f"{txt:.1f}", (present["Day"].iloc[i], present["Q2"].iloc[i]),
-                     textcoords="offset points", xytext=(0, 5), ha='center', fontsize=10, color="#fdac01")
 
     # Trục Y bên phải (Lượng mưa - X) - Hiển thị dưới dạng đường nhưng đảo ngược trục
     ax2 = ax1.twinx()
@@ -194,7 +202,6 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     ax2.set_ylim(x2_max, x2_min)
     ax2.set_facecolor("none")  # Trục chính không có nền
     ax2.grid(True, linestyle="--", color="blue", alpha=0.3)  # Lưới cho trục Y bên phải (X)
-
     # Hiển thị giá trị lượng mưa trên cột
     for i, txt in enumerate(filtered_df["X"]):
         ax2.annotate(f"{txt:.1f}", (filtered_df["Day"].iloc[i], filtered_df["X"].iloc[i]),
@@ -216,7 +223,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         Tuy nhiên, tuỳ thuộc vào đặc tính dữ liệu thống kê và đặc tính vật lý của lưu vực mà mỗi mô hình học máy sẽ học và cho kết quả dự đoán với độ tin cậy khác nhau. 
         Nghiên cứu này sẽ thực hiện trên tập dữ liệu gồm lượng mưa và lưu lượng của lưu vực hồ A Lưới từ năm 2017 đến năm 2021 với 03 mô hình học máy được xem xét đó là RF, XGBoost và LSTM. 
         Kết quả huấn luyện và kiểm tra cho thấy mô hình LSTM cho chỉ số đánh giá tốt hơn 2 mô hình còn lại (NSE =0.93; MAE = 17.47; RMSE = 33.11). 
-        Từ đó sử dụng mô hình LSTM để dự báo lưu lượng về hồ A Lưới từ dữ liệu mưa dự báo được cung cấp bởi websites Weather API cho lưu vực hồ A Lưới. 
+        Từ đó sử dụng mô hình LSTM để dự báo lưu lượng về hồ A Lưới từ dữ liệu mưa dự báo sẳn có trên websites weather cho lưu vực hồ A Lưới. 
         Các kết quả dự báo này được tự động cập nhật ứng dụng web Streamlit.
         </div>
         """, unsafe_allow_html=True)
@@ -247,4 +254,4 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         st.markdown("<h2 style='font-size: 32px; font-weight: bold; color: purple;'>VỊ TRÍ HỒ A LƯỚI</h2>", unsafe_allow_html=True)
         st.components.v1.iframe("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5183.445656933609!2d107.16354377708113!3d16.196807863014435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3140374a45533dc3%3A0x8147ee687f758a43!2zxJDhuq1wIFRoxrDhu6NuZyBOZ3Xhu5NuIFRodcyJeSDEkGnDqsyjbiBBIEzGsMahzIFp!5e0!3m2!1svi!2s!4v1743527770714!5m2!1svi!2s",
                                  height=300, scrolling=False)
-        st.image("Aluoi.jpg", use_container_width=True)  # Điều chỉnh kích thước ảnh theo tỉ lệ cột
+        st.image("c:/NCKH/logo_anh/Aluoi.jpg", use_container_width=True)  # Điều chỉnh kích thước ảnh theo tỉ lệ cột
