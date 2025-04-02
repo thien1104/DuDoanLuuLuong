@@ -71,7 +71,12 @@ with col1:
         <style>
             @media screen and (max-width: 768px) {
                 .logo-img {
-                    width: 200px !important; /* Điều chỉnh width nhỏ lại trên điện thoại */
+                    width: 100px !important; /* Điều chỉnh width nhỏ lại trên điện thoại */
+                }
+            }
+            @media screen and (max-width: 480px) {
+                .logo-img {
+                    width: 100px !important; /* Điều chỉnh width nhỏ lại trên điện thoại */
                 }
             }
         </style>
@@ -95,10 +100,10 @@ with col2:
     <style>
         @media screen and (max-width: 768px) {
             h2 {
-                font-size: 30px !important;
+                font-size: 20px !important;
             }
             h3 {
-                font-size: 25px !important;
+                font-size: 18px !important;
             }
         }
         @media screen and (max-width: 480px) {
