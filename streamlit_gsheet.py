@@ -66,7 +66,7 @@ col1, col2 = st.columns([1, 4])  # Cột logo nhỏ hơn, cột chữ lớn hơn
 
 # Hiển thị logo với kích thước nhỏ hơn
 with col1:
-    st.image("c:/NCKH/logo_anh/3logo.png", width=300)  # Điều chỉnh width nhỏ lại
+    st.image("3logo.png", width=300)  # Điều chỉnh width nhỏ lại
 
 # Hiển thị tiêu đề với chữ lớn hơn
 with col2:
