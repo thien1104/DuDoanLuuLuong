@@ -74,8 +74,8 @@ with col1:
     html_code = f"""
         <style>
             .responsive-image {{
-                max-width: 300px;
-                width: 90%;
+                max-width: 400px;
+                width: 100%;
                 height: auto;
                 display: block;
                 margin-left: auto;
@@ -83,7 +83,7 @@ with col1:
             }}
             @media screen and (max-width: 480px) {{
                 .responsive-image {{
-                    width: 40%;
+                    width: 50%;
                 }}
             }}
         </style>
