@@ -74,8 +74,8 @@ with col1:
     html_code = f"""
         <style>
             .responsive-image {{
-                max-width: 100px;
-                width: 90%;
+                max-width: 200px;
+                width: 80%;
                 height: auto;
                 display: block;
                 margin-left: auto;
