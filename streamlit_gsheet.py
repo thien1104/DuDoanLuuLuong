@@ -71,12 +71,12 @@ with col1:
         <style>
         @media screen and (max-width: 768px) {
             .logo-img {
-                width: 200px !important; /* Thu nhỏ hình ảnh trên màn hình nhỏ */
+                width: 150px !important; /* Thu nhỏ hình ảnh trên màn hình nhỏ */
             }
         }
         @media screen and (max-width: 480px) {
             .logo-img {
-                width: 150px !important; /* Thu nhỏ hơn nữa trên màn hình rất nhỏ */
+                width: 100px !important; /* Thu nhỏ hơn nữa trên màn hình rất nhỏ */
             }
         }
         </style>
