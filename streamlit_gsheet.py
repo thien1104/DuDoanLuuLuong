@@ -74,12 +74,17 @@ with col1:
     html_code = f"""
         <style>
             .responsive-image {{
-                max-width: 200px;
-                width: 80%;
+                max-width: 300px;
+                width: 90%;
                 height: auto;
                 display: block;
                 margin-left: auto;
                 margin-right: auto;
+            }}
+            @media screen and (max-width: 480px) {{
+                .responsive-image {{
+                    width: 40%;
+                }}
             }}
         </style>
         <img src="data:image/png;base64,{encoded_string}" class="responsive-image">
