@@ -66,7 +66,27 @@ col1, col2 = st.columns([1, 4])  # Cột logo nhỏ hơn, cột chữ lớn hơn
 
 # Hiển thị logo với kích thước nhỏ hơn
 with col1:
-    st.image("3logo.png", width=300)  # Điều chỉnh width nhỏ lại
+    with col1:
+    # Đọc ảnh và mã hóa base64
+    with open("3logo.png", "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read()).decode()
+
+    # Tạo HTML và CSS tùy chỉnh
+    html_code = f"""
+        <style>
+            .responsive-image {{
+                max-width: 100px;
+                width: 90%;
+                height: auto;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }}
+        </style>
+        <img src="data:image/png;base64,{encoded_string}" class="responsive-image">
+    """
+    # Hiển thị HTML
+    st.markdown(html_code, unsafe_allow_html=True)
 
 # Hiển thị tiêu đề với chữ lớn hơn
 with col2:
