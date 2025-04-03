@@ -83,18 +83,18 @@ with col2:
     <style>
         @media screen and (max-width: 768px) {
             h2 {
-                font-size: 30px !important;
+                font-size: 28px !important;
             }
             h3 {
-                font-size: 25px !important;
+                font-size: 22px !important;
             }
         }
         @media screen and (max-width: 480px) {
             h2 {
-                font-size: 18px !important;
+                font-size: 20px !important;
             }
             h3 {
-                font-size: 16px !important;
+                font-size: 18px !important;
             }
         }
     </style>
