@@ -66,7 +66,6 @@ col1, col2 = st.columns([1, 4])  # Cột logo nhỏ hơn, cột chữ lớn hơn
 
 # Hiển thị logo với kích thước nhỏ hơn
 with col1:
-    with col1:
     # Đọc ảnh và mã hóa base64
     with open("3logo.png", "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read()).decode()
