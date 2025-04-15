@@ -187,7 +187,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     q2_min = df["Q2"].min() - q2
     q2_max = df["Q2"].max() * 1.5
     x2_min = df["X"].min()
-    x2_max = df["X"].max() * 3.001
+    x2_max = df["X"].max() * 3
 
     # Trục Y bên trái (Lưu lượng Q2)
     ax1.set_xlabel("Ngày")
