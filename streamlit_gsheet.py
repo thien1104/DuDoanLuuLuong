@@ -185,7 +185,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     # Tính khoảng dựa trên toàn bộ dữ liệu để giữ cố định trục Y
     q2 = abs(df["Q2"].max() - df["Q2"].min()) * 0.15
     q2_min = df["Q2"].min() - q2
-    q2_max = df["Q2"].max() * 1.5
+    q2_max = df["Q2"].max() * 1.51
     x2_min = df["X"].min()
     x2_max = df["X"].max() * 3
 
