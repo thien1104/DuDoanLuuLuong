@@ -67,15 +67,15 @@ col1, col2 = st.columns([1, 4])  # Cột logo nhỏ hơn, cột chữ lớn hơn
 # Hiển thị logo với kích thước nhỏ hơn
 with col1:
     # Đọc ảnh và mã hóa base64
-    with open("3logo.png", "rb") as image_file:
+    with open(r"C:\NCKH\logo_anh\3logo.png", "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read()).decode()
 
     # Tạo HTML và CSS tùy chỉnh
     html_code = f"""
         <style>
             .responsive-image {{
-                max-width: 400px;
-                width: 100%;
+                max-width: 300px;
+                width: 90%;
                 height: auto;
                 display: block;
                 margin-left: auto;
@@ -83,7 +83,7 @@ with col1:
             }}
             @media screen and (max-width: 480px) {{
                 .responsive-image {{
-                    width: 50%;
+                    width: 40%;
                 }}
             }}
         </style>
@@ -107,18 +107,18 @@ with col2:
     <style>
         @media screen and (max-width: 768px) {
             h2 {
-                font-size: 28px !important;
+                font-size: 30px !important;
             }
             h3 {
-                font-size: 22px !important;
+                font-size: 25px !important;
             }
         }
         @media screen and (max-width: 480px) {
             h2 {
-                font-size: 14px !important;
+                font-size: 18px !important;
             }
             h3 {
-                font-size: 12px !important;
+                font-size: px !important;
             }
         }
     </style>
@@ -185,7 +185,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
     # Tính khoảng dựa trên toàn bộ dữ liệu để giữ cố định trục Y
     q2 = abs(df["Q2"].max() - df["Q2"].min()) * 0.15
     q2_min = df["Q2"].min() - q2
-    q2_max = df["Q2"].max() * 1.51
+    q2_max = df["Q2"].max() * 1.5
     x2_min = df["X"].min()
     x2_max = df["X"].max() * 3
 
@@ -278,4 +278,4 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         st.markdown("<h2 style='font-size: 32px; font-weight: bold; color: purple;'>VỊ TRÍ HỒ A LƯỚI</h2>", unsafe_allow_html=True)
         st.components.v1.iframe("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5183.445656933609!2d107.16354377708113!3d16.196807863014435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3140374a45533dc3%3A0x8147ee687f758a43!2zxJDhuq1wIFRoxrDhu6NuZyBOZ3Xhu5NuIFRodcyJeSDEkGnDqsyjbiBBIEzGsMahzIFp!5e0!3m2!1svi!2s!4v1743527770714!5m2!1svi!2s",
                                  height=300, scrolling=False)
-        st.image("Aluoi.jpg", use_container_width=True)  # Điều chỉnh kích thước ảnh theo tỉ lệ cột
+        st.image("c:/NCKH/logo_anh/Aluoi.jpg", use_container_width=True)  # Điều chỉnh kích thước ảnh theo tỉ lệ cột
