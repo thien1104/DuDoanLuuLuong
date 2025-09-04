@@ -286,3 +286,4 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
 
 
 
+
