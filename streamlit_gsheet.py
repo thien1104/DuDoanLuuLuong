@@ -130,7 +130,7 @@ with col2:
 st_autorefresh(interval=500 * 1000, key="data_refresh")
 
 def load_data():
-    sheetName = 'DuBao'
+    sheetName = 'DuBao2'
     try:
         #st.error(f"Đang mở kết nối...")
         conn = st.connection("gsheets", type=GSheetsConnection)  # Kết nối Google Sheets
@@ -285,6 +285,7 @@ if df is not None and not df.empty and "Day" in df.columns and "X" in df.columns
         st.components.v1.iframe("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5183.445656933609!2d107.16354377708113!3d16.196807863014435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3140374a45533dc3%3A0x8147ee687f758a43!2zxJDhuq1wIFRoxrDhu6NuZyBOZ3Xhu5NuIFRodcyJeSDEkGnDqsyjbiBBIEzGsMahzIFp!5e0!3m2!1svi!2s!4v1743527770714!5m2!1svi!2s",
                                  height=300, scrolling=False)
         st.image("Aluoi.jpg", use_container_width=True)  # Điều chỉnh kích thước ảnh theo tỉ lệ cột
+
 
 
 
